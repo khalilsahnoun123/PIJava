@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="614" prefWidth="880" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.controllers_velo.VeloController">
+   <HBox prefHeight="534.0" prefWidth="966.0" spacing="20">
+      <!-- Partie gauche : Liste des vélos -->
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="500" prefWidth="700.0" style="-fx-background: #f5f5f5; -fx-border-color: #ddd;">
+         <content>
+            <FlowPane fx:id="veloCardsContainer" hgap="15" prefWrapLength="665" vgap="15" />
+         </content>
+      </ScrollPane>
+
+      <!-- Partie droite : Formulaire + Retour -->
+      <VBox prefWidth="250" spacing="15" style="-fx-padding: 15; -fx-background-color: #ffffff;">
+
+         <!-- Section Image -->
+         <ImageView fx:id="veloImagePreview" fitHeight="150" fitWidth="200" preserveRatio="true" style="-fx-border-color: #cccccc; -fx-border-width: 1;" />
+
+         <Button onAction="#handleUploadImage" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;" text="Upload Image" />
+
+         <!-- Détails du vélo -->
+         <ComboBox fx:id="typeCombo" promptText="Type de vélo" style="-fx-font-size: 14px; -fx-pref-width: 200px;" />
+
+         <TextArea fx:id="descriptionField" prefRowCount="3" promptText="Description (max 200 caractères)" style="-fx-font-size: 14px; -fx-pref-width: 200px;" />
+
+         <TextField fx:id="priceField" promptText="Prix (DT/h) - Ex: 12.50" style="-fx-font-size: 14px; -fx-pref-width: 200px;" />
+         <!-- Bouton d'action -->
+         <Button fx:id="addButton" onAction="#handleAddVelo" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 200px;" text="Ajouter" />
+
+         <!-- Bouton Retour -->
+         <!-- Ajoutez ceci après le bouton "Ajouter" -->
+         <Button onAction="#handleReturnToStations" style="-fx-background-color: #9E9E9E; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 200px;" text="Retour" />
+      </VBox>
+   </HBox>
+</AnchorPane>
