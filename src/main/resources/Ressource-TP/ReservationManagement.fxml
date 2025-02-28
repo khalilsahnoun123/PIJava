@@ -31,6 +31,7 @@
         <Button fx:id="refreshButton" text="Refresh" onAction="#loadData" styleClass="nav-button"/>
     </HBox>
 
+
     <!-- Reservations List -->
     <ScrollPane fitToWidth="true" styleClass="scroll-pane">
         <GridPane fx:id="gridPane" styleClass="grid-pane">

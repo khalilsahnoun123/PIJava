@@ -192,6 +192,7 @@ public class ModifyReservationController {
     @FXML
     private void goBack() {
         try {
+
             Parent root = FXMLLoader.load(getClass().getResource("/Ressource-TP/ReservationManagement.fxml"));
             Stage stage = (Stage) previousButton.getScene().getWindow();
             stage.setScene(new Scene(root));

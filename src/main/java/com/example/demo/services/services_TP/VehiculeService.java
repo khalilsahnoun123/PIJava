@@ -38,6 +38,7 @@ public class VehiculeService implements IService<Vehicule> {
     }
 
 
+
     public Vehicule getVehiculeById(int id) {
         String query = "SELECT * FROM vehicules WHERE id = ?";
         try (PreparedStatement pstmt = cnx.prepareStatement(query)) {

@@ -32,6 +32,7 @@
         </GridPane>
     </VBox>
 
+
     <!-- Buttons -->
     <HBox spacing="15" alignment="CENTER">
         <Button fx:id="saveButton" text="Enregistrer" onAction="#saveStation"

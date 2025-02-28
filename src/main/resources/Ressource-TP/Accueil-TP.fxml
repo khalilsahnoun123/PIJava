@@ -7,6 +7,7 @@
       style="-fx-background-color: #F5F5F5; -fx-padding: 30;">
 
     <children>
+
         <!-- Header -->
         <Label fx:id="welcomeLabel" text="Bienvenue au Système de Gestion des Transports"
                style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>

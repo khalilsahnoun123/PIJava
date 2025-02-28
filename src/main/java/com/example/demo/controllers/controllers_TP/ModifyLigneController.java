@@ -25,6 +25,7 @@ public class ModifyLigneController {
     @FXML private Label prixPremiumErrorLabel;
     @FXML private TextField prixEconoField;
     @FXML private Label prixEconoErrorLabel;
+
     @FXML private Label successLabel;
     @FXML private Button previousButton;
 

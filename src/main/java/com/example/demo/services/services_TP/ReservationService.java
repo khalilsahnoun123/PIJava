@@ -43,6 +43,7 @@ public class ReservationService implements IService<Reservation> {
     }
 
 
+
     public Reservation getReservationById(int id) {
         String query = "SELECT * FROM reservations WHERE reservation_id = ?";
         try (PreparedStatement pstmt = cnx.prepareStatement(query)) {

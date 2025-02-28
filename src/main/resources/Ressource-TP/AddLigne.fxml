@@ -9,6 +9,7 @@
       spacing="20" alignment="CENTER" style="-fx-background-color: #f5f5f5;">
 
     <padding>
+
         <Insets top="25" right="25" bottom="25" left="25"/>
     </padding>
 

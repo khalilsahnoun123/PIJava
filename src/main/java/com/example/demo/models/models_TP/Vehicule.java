@@ -21,6 +21,7 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     private TypeVehicule type;
 
+
     @Column(name = "nbr_max_passagers_vip")
     private int nbrMaxPassagersVIP;
     private int nbrMaxPassagersPremium;

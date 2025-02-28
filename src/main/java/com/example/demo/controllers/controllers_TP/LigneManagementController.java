@@ -32,6 +32,8 @@ public class LigneManagementController {
             gridPane = new GridPane();
             gridPane.getStyleClass().add("grid-pane");
         }
+
+
         setupGrid();
         styleComponents();
         loadData();

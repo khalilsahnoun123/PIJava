@@ -19,6 +19,7 @@
         <Insets top="30" right="40" bottom="30" left="40"/>
     </padding>
 
+
     <!-- Header Section -->
     <HBox spacing="20" alignment="CENTER_LEFT">
         <Button fx:id="previousButton" text="◄ Back" onAction="#goBack" styleClass="nav-button"/>

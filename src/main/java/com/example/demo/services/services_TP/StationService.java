@@ -62,6 +62,7 @@ public class StationService implements IService<Station> {
         return stations;
     }
 
+
     @Override
     public List<Station> getAll() {
         List<Station> stations = new ArrayList<>();

@@ -138,6 +138,7 @@ public class VehiculeManagementController {
         gridPane.add(label, columnIndex, rowIndex);
     }
 
+
     private void applyRowHoverEffect(Integer rowIndex) {
         gridPane.getChildren().forEach(node -> {
             if (GridPane.getRowIndex(node) == rowIndex) {

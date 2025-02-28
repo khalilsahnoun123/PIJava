@@ -21,6 +21,7 @@ public class Ligne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     private String name;
 
     private Double PrixVIP;

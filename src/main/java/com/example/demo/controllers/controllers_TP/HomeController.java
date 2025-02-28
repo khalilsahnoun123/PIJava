@@ -24,6 +24,7 @@ public class HomeController {
         // Style buttons
         styleButtons();
 
+
         // Set welcome message
         welcomeLabel.setText("Welcome to Transportation Management System");
     }

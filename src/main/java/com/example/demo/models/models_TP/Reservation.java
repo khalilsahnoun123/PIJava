@@ -22,6 +22,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reservationId;
 
+
     @Column(nullable = false)
     private LocalDateTime  reservationDate;
 

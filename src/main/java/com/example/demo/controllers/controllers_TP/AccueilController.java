@@ -19,6 +19,7 @@ public class AccueilController {
     @FXML private Button stationManagementButton;
     @FXML private Label welcomeLabel;
 
+
     @FXML
     public void initialize() {
         // Apply styles and hover effects to buttons

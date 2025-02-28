@@ -23,6 +23,7 @@ public class StationManagementController {
     @FXML private Button addButton;
     @FXML private Button previousButton;
 
+
     private List<Station> stations;
     private StationService stationService = new StationService();
 

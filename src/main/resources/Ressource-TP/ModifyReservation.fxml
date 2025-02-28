@@ -12,6 +12,7 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
+
     <children>
         <!-- Labels -->
         <Label text="Number of Seats:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>

@@ -12,6 +12,7 @@
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
+
     <!-- Header -->
     <Text text="Modifier un Véhicule" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: #2c3e50;"/>
 

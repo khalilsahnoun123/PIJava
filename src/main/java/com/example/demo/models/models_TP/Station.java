@@ -20,6 +20,7 @@ public class Station {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     private String nom;
 
     private String adresse;

@@ -41,6 +41,7 @@ public class AddStationController {
             @Override
             protected void updateItem(Ligne item, boolean empty) {
                 super.updateItem(item, empty);
+
                 setText(empty || item == null ? null : item.getName());
             }
         });

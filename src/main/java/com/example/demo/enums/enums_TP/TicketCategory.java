@@ -4,4 +4,5 @@ public enum TicketCategory {
     PREMIUM,
     ECONOMIC,
     VIP
+
 }

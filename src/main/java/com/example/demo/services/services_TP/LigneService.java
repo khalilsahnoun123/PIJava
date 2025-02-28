@@ -18,6 +18,7 @@ public class LigneService implements IService<Ligne> {
     }
 
     @Override
+
     public void add(Ligne ligne) {
         String query =  "INSERT INTO ligne (name, prix_vip, prix_premium, prix_economique, region) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = cnx.prepareStatement(query)) {

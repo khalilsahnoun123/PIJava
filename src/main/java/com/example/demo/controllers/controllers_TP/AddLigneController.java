@@ -67,6 +67,7 @@ public class AddLigneController {
                 ligne.setPrixPREMIUM(Double.parseDouble(prixPremiumField.getText()));
                 ligne.setPrixECONIMIC(Double.parseDouble(prixEconoField.getText()));
 
+
                 ligneService.add(ligne);
 
                 // Show success message and clear form
