@@ -60,14 +60,38 @@ public class VehiculeController {
         });
 
         // Add real-time validation listeners
-        typeField.valueProperty().addListener((obs, oldVal, newVal) -> validateType());
-        ligneField.valueProperty().addListener((obs, oldVal, newVal) -> validateLigne());
-        vipPassengersField.textProperty().addListener((obs, oldVal, newVal) -> validateVipPassengers());
-        premiumPassengersField.textProperty().addListener((obs, oldVal, newVal) -> validatePremiumPassengers());
-        economyPassengersField.textProperty().addListener((obs, oldVal, newVal) -> validateEconomyPassengers());
-        vipAvailableField.textProperty().addListener((obs, oldVal, newVal) -> validateVipAvailable());
-        premiumAvailableField.textProperty().addListener((obs, oldVal, newVal) -> validatePremiumAvailable());
-        economyAvailableField.textProperty().addListener((obs, oldVal, newVal) -> validateEconomyAvailable());
+        typeField.valueProperty().addListener((obs, oldVal, newVal) -> {
+            validateType();
+            checkFormValidity();
+        });
+        ligneField.valueProperty().addListener((obs, oldVal, newVal) -> {
+            validateLigne();
+            checkFormValidity();
+        });
+        vipPassengersField.textProperty().addListener((obs, oldVal, newVal) -> {
+            validateVipPassengers();
+            checkFormValidity();
+        });
+        premiumPassengersField.textProperty().addListener((obs, oldVal, newVal) -> {
+            validatePremiumPassengers();
+            checkFormValidity();
+        });
+        economyPassengersField.textProperty().addListener((obs, oldVal, newVal) -> {
+            validateEconomyPassengers();
+            checkFormValidity();
+        });
+        vipAvailableField.textProperty().addListener((obs, oldVal, newVal) -> {
+            validateVipAvailable();
+            checkFormValidity();
+        });
+        premiumAvailableField.textProperty().addListener((obs, oldVal, newVal) -> {
+            validatePremiumAvailable();
+            checkFormValidity();
+        });
+        economyAvailableField.textProperty().addListener((obs, oldVal, newVal) -> {
+            validateEconomyAvailable();
+            checkFormValidity();
+        });
 
         // Initially disable save button
         saveButton.setDisable(true);
@@ -91,6 +115,7 @@ public class VehiculeController {
 
                 successLabel.setVisible(true);
                 clearForm();
+                goBack();
 
                 // Hide success message after 3 seconds
                 new Thread(() -> {
@@ -122,22 +147,21 @@ public class VehiculeController {
     }
 
     private boolean validateForm() {
-        return validateType() && validateLigne() && validateVipPassengers() && validatePremiumPassengers()
-                && validateEconomyPassengers() && validateVipAvailable() && validatePremiumAvailable()
+        return validateType() && validateLigne() && validateVipPassengers()
+                && validatePremiumPassengers() && validateEconomyPassengers()
+                && validateVipAvailable() && validatePremiumAvailable()
                 && validateEconomyAvailable();
     }
 
     private boolean validateType() {
         boolean isValid = typeField.getValue() != null;
         typeErrorLabel.setVisible(!isValid);
-        checkFormValidity();
         return isValid;
     }
 
     private boolean validateLigne() {
         boolean isValid = ligneField.getValue() != null;
         ligneErrorLabel.setVisible(!isValid);
-        checkFormValidity();
         return isValid;
     }
 
@@ -170,18 +194,15 @@ public class VehiculeController {
         if (text.isEmpty()) {
             errorLabel.setText("Champ obligatoire");
             errorLabel.setVisible(true);
-            saveButton.setDisable(true);
             return false;
         }
         try {
             Integer.parseInt(text);
             errorLabel.setVisible(false);
-            checkFormValidity();
             return true;
         } catch (NumberFormatException e) {
             errorLabel.setText("Valeur invalide");
             errorLabel.setVisible(true);
-            saveButton.setDisable(true);
             return false;
         }
     }
@@ -208,4 +229,6 @@ public class VehiculeController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 }

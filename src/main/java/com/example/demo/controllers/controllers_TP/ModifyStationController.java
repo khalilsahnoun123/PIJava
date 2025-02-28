@@ -20,7 +20,7 @@ public class ModifyStationController {
     @FXML private TextField nomField;
     @FXML private TextField adresseField;
     @FXML private ComboBox<Ligne> ligneComboBox;
-    @FXML private Button saveButton;
+
     @FXML private Button previousButton;
     @FXML private Label messageLabel;
 
@@ -79,7 +79,7 @@ public class ModifyStationController {
             stationToModify.setNom(nomField.getText().trim());
             stationToModify.setAdresse(adresseField.getText().trim());
             stationToModify.setLigne(ligneComboBox.getValue());
-
+            System.out.println(stationToModify.toString());
             stationService.update(stationToModify);
             showSuccessMessage("Station modifiée avec succès!");
             goBack();

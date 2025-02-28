@@ -20,7 +20,7 @@ public class StationService implements IService<Station> {
 
     @Override
     public void add(Station station) {
-        String query = "INSERT INTO stations (nom, adresseligne_id) VALUES (?, ?,?)";
+        String query = "INSERT INTO stations (nom, adresse,ligne_id) VALUES (?, ?,?)";
         try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
             pstmt.setString(1, station.getNom());
             pstmt.setString(2, station.getAdresse());
@@ -63,11 +63,12 @@ public class StationService implements IService<Station> {
 
     @Override
     public void update(Station station) {
-        String query = "UPDATE stations SET nom = ?, adresse = ? WHERE id = ?";
+        String query = "UPDATE stations SET nom = ?, adresse = ?,ligne_id= ? WHERE id = ?";
         try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
             pstmt.setString(1, station.getNom());
             pstmt.setString(2, station.getAdresse());
-            pstmt.setInt(3, station.getId());
+            pstmt.setInt(3, station.getLigne().getId());
+            pstmt.setInt(4, station.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

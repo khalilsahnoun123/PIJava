@@ -2,6 +2,7 @@ package com.example.demo.controllers.controllers_TP;
 
 import com.example.demo.models.models_TP.Vehicule;
 import com.example.demo.services.services_TP.VehiculeService;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,125 +12,146 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class VehiculeManagementController {
 
-    @FXML
-    private TableView<Vehicule> vehiculeTable;
-    @FXML
-    private TableColumn<Vehicule, Integer> idColumn;
-    @FXML
-    private TableColumn<Vehicule, String> typeColumn;
-    @FXML
-    private TableColumn<Vehicule, String> ligneColumn;
-    @FXML
-    private TableColumn<Vehicule, Integer> vipMaxColumn;
-    @FXML
-    private TableColumn<Vehicule, Integer> premiumMaxColumn;
-    @FXML
-    private TableColumn<Vehicule, Integer> economyMaxColumn;
-    @FXML
-    private TableColumn<Vehicule, Integer> vipAvailableColumn;
-    @FXML
-    private TableColumn<Vehicule, Integer> premiumAvailableColumn;
-    @FXML
-    private TableColumn<Vehicule, Integer> economyAvailableColumn;
-    @FXML
-    private TableColumn<Vehicule, Void> actionsColumn;
+    @FXML private GridPane gridPane;
+    @FXML private Label messageLabel;
+
     @FXML private Button previousButton;
 
-    @FXML
-    private TextField searchField;
-    @FXML
-    private Label messageLabel;
-    @FXML
-    private Button addButton;
-    @FXML
-    private Button prevButton;
-    @FXML
-    private Button nextButton;
-    @FXML
-    private Label pageLabel;
+
+
+    private List<Vehicule> vehicules;
 
     private VehiculeService vehiculeService = new VehiculeService();
-    private ObservableList<Vehicule> vehiculeList = FXCollections.observableArrayList();
-    private ObservableList<Vehicule> filteredList = FXCollections.observableArrayList();
-    private int currentPage = 0;
-    private final int ITEMS_PER_PAGE = 10;
+
+
 
     @FXML
     public void initialize() {
-        // Configure columns with correct property names
-        idColumn.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-        typeColumn.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleStringProperty(
-                        cellData.getValue().getType() != null ? cellData.getValue().getType().toString() : "N/A"));
-        ligneColumn.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleStringProperty(
-                        cellData.getValue().getLigne() != null ? cellData.getValue().getLigne().getName() : "N/A"));
-        vipMaxColumn.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getNbrMaxPassagersVIP()).asObject());
-        premiumMaxColumn.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getNbrMaxPassagersPremium()).asObject());
-        economyMaxColumn.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getNbrMaxPassagersEconomy()).asObject());
-        vipAvailableColumn.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getPlacesDisponiblesVIP()).asObject());
-        premiumAvailableColumn.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getPlacesDisponiblesPremium()).asObject());
-        economyAvailableColumn.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getPlacesDisponiblesEconomy()).asObject());
-        // Action column with buttons
-        actionsColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button modifyButton = new Button("Modifier");
-            private final Button deleteButton = new Button("Supprimer");
+        if (gridPane == null) {
+            gridPane = new GridPane();
+            gridPane.getStyleClass().add("grid-pane");
+        }
+        setupGrid();
+        styleComponents();
+        loadData();
+    }
 
-            {
-                modifyButton.setStyle("-fx-background-color: #e67e22; -fx-text-fill: white; " +
-                        "-fx-font-size: 12px; -fx-padding: 5 10; -fx-background-radius: 5;");
-                deleteButton.setStyle("-fx-background-color: #c0392b; -fx-text-fill: white; " +
-                        "-fx-font-size: 12px; -fx-padding: 5 10; -fx-background-radius: 5;");
-                modifyButton.setOnAction(event -> {
-                    Vehicule vehicule = getTableView().getItems().get(getIndex());
-                    handleModify(vehicule);
-                });
+    private void setupGrid() {
+        gridPane.getColumnConstraints().clear();
 
-                deleteButton.setOnAction(event -> {
-                    Vehicule vehicule = getTableView().getItems().get(getIndex());
-                    handleDelete(vehicule);
-                });
-            }
+        // Column constraints (matches FXML percentages)
+        double[] percentages = {8, 15, 15, 10, 10, 10, 10, 10, 10, 10};
+        for (double percent : percentages) {
+            ColumnConstraints col = new ColumnConstraints();
+            col.setPercentWidth(percent);
+            gridPane.getColumnConstraints().add(col);
+        }
 
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    HBox hbox = new HBox(10, modifyButton, deleteButton);
-                    hbox.setAlignment(javafx.geometry.Pos.CENTER);
-                    setGraphic(hbox);
-                }
+        addHeaderRow();
+    }
+
+    private void addHeaderRow() {
+        String[] headers = {"ID", "Type", "Ligne", "VIP Max", "Premium Max", "Éco Max",
+                "VIP Dispo", "Premium Dispo", "Éco Dispo", "Actions"};
+        for (int i = 0; i < headers.length; i++) {
+            Label header = new Label(headers[i]);
+            header.getStyleClass().add("grid-header");
+            gridPane.add(header, i, 0);
+        }
+    }
+
+    private void styleComponents() {
+        if (gridPane != null) {
+            gridPane.setHgap(10);
+            gridPane.setVgap(8);
+        }
+    }
+
+    private void loadData() {
+        vehicules = vehiculeService.getAll();
+        // Debug: Check number of retrieved vehicles
+        System.out.println("Number of vehicles retrieved: " + vehicules.size());
+        if (vehicules == null || vehicules.isEmpty()) {
+            showErrorMessage("No data found in the database.");
+            return;
+        }
+
+        refreshGrid();
+    }
+    private void refreshGrid() {
+        Platform.runLater(() -> {
+            // Clear existing rows (keep header row)
+            gridPane.getChildren().removeIf(node ->
+                    GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0
+            );
+
+            int rowIndex = 1;
+            for (Vehicule vehicule : vehicules)
+            {System.out.println(vehicule);
+                addVehiculeRow(vehicule, rowIndex);
+                rowIndex++;
             }
         });
-
-        // Load initial data
-        loadVehicules();
-        updateTableView();
     }
 
-    private void loadVehicules() {
-        vehiculeList.setAll(vehiculeService.getAll());
-        filteredList.setAll(vehiculeList);
-        // Debug output to verify data
-        vehiculeList.forEach(v -> System.out.println("Vehicule: " + v.getId() + ", Type: " + v.getType() +
-                ", VIP Max: " + v.getNbrMaxPassagersVIP() + ", Ligne: " + (v.getLigne() != null ? v.getLigne().getName() : "null")));
+    private void addVehiculeRow(Vehicule vehicule, int rowIndex) {
+        addGridCell(String.valueOf(vehicule.getId()), 0, rowIndex);
+        addGridCell(vehicule.getType() != null ? vehicule.getType().toString() : "N/A", 1, rowIndex);
+        addGridCell(vehicule.getLigne() != null ? vehicule.getLigne().getName() : "N/A", 2, rowIndex);
+        addGridCell(String.valueOf(vehicule.getNbrMaxPassagersVIP()), 3, rowIndex);
+        addGridCell(String.valueOf(vehicule.getNbrMaxPassagersPremium()), 4, rowIndex);
+        addGridCell(String.valueOf(vehicule.getNbrMaxPassagersEconomy()), 5, rowIndex);
+        addGridCell(String.valueOf(vehicule.getPlacesDisponiblesVIP()), 6, rowIndex);
+        addGridCell(String.valueOf(vehicule.getPlacesDisponiblesPremium()), 7, rowIndex);
+        addGridCell(String.valueOf(vehicule.getPlacesDisponiblesEconomy()), 8, rowIndex);
+
+        // Action Buttons
+        HBox actionBox = new HBox(10);
+        Button editButton = new Button("Modifier");
+        Button deleteButton = new Button("Supprimer");
+
+        editButton.getStyleClass().add("grid-action-button");
+        deleteButton.getStyleClass().add("grid-action-button");
+
+        editButton.setOnAction(e -> handleModify(vehicule));
+        deleteButton.setOnAction(e -> handleDelete(vehicule));
+
+        actionBox.getChildren().addAll(editButton, deleteButton);
+        gridPane.add(actionBox, 9, rowIndex);
+
+        applyRowHoverEffect(rowIndex);
     }
+
+    private void addGridCell(String value, int columnIndex, int rowIndex) {
+        Label label = new Label(value);
+        label.getStyleClass().add("grid-cell");
+        gridPane.add(label, columnIndex, rowIndex);
+    }
+
+    private void applyRowHoverEffect(Integer rowIndex) {
+        gridPane.getChildren().forEach(node -> {
+            if (GridPane.getRowIndex(node) == rowIndex) {
+                node.setOnMouseEntered(e -> gridPane.getChildren()
+                        .filtered(n -> GridPane.getRowIndex(n) == rowIndex)
+                        .forEach(n -> n.setStyle("-fx-background-color: #f8f9fa;")));
+                node.setOnMouseExited(e -> gridPane.getChildren()
+                        .filtered(n -> GridPane.getRowIndex(n) == rowIndex)
+                        .forEach(n -> n.setStyle("")));
+            }
+        });
+    }
+
+
 
     @FXML
     private void goToAddVehicule() {
@@ -170,8 +192,8 @@ public class VehiculeManagementController {
         if (confirm.showAndWait().get() == ButtonType.OK) {
             try {
                 vehiculeService.delete(vehicule.getId());
-                loadVehicules();
-                updateTableView();
+                loadData();
+
                 showSuccessMessage("Véhicule supprimé avec succès!");
             } catch (Exception e) {
                 showErrorMessage("Erreur lors de la suppression: " + e.getMessage());
@@ -179,55 +201,11 @@ public class VehiculeManagementController {
         }
     }
 
-    @FXML
-    private void filterVehicules() {
-        String searchText = searchField.getText().toLowerCase();
-        filteredList.clear();
-        if (searchText.isEmpty()) {
-            filteredList.setAll(vehiculeList);
-        } else {
-            for (Vehicule v : vehiculeList) {
-                if (String.valueOf(v.getId()).contains(searchText) ||
-                        (v.getType() != null && v.getType().toString().toLowerCase().contains(searchText)) ||
-                        (v.getLigne() != null && v.getLigne().getName().toLowerCase().contains(searchText))) {
-                    filteredList.add(v);
-                }
-            }
-        }
-        currentPage = 0;
-        updateTableView();
-    }
 
-    @FXML
-    private void previousPage() {
-        if (currentPage > 0) {
-            currentPage--;
-            updateTableView();
-        }
-    }
 
-    @FXML
-    private void nextPage() {
-        int totalPages = (int) Math.ceil((double) filteredList.size() / ITEMS_PER_PAGE);
-        if (currentPage < totalPages - 1) {
-            currentPage++;
-            updateTableView();
-        }
-    }
 
-    private void updateTableView() {
-        int fromIndex = currentPage * ITEMS_PER_PAGE;
-        int toIndex = Math.min(fromIndex + ITEMS_PER_PAGE, filteredList.size());
-        ObservableList<Vehicule> pageList = FXCollections.observableArrayList(
-                filteredList.subList(fromIndex, toIndex));
-        vehiculeTable.setItems(pageList);
 
-        int totalPages = (int) Math.ceil((double) filteredList.size() / ITEMS_PER_PAGE);
-        pageLabel.setText(String.format("Page %d / %d", currentPage + 1, Math.max(1, totalPages)));
 
-        prevButton.setDisable(currentPage == 0);
-        nextButton.setDisable(toIndex >= filteredList.size());
-    }
 
     private void showSuccessMessage(String message) {
         messageLabel.setText(message);

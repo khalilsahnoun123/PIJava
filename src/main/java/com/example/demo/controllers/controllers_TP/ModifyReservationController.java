@@ -189,4 +189,15 @@ public class ModifyReservationController {
     private List<Station> getStationsFromService() {
         return Arrays.asList(new Station()); // Replace with actual service call
     }
+    @FXML
+    private void goBack() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Ressource-TP/ReservationManagement.fxml"));
+            Stage stage = (Stage) previousButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestion des Véhicules");
+        } catch (IOException e) {
+            showErrorMessage("Erreur lors du retour: " + e.getMessage());
+        }
+    }
 }

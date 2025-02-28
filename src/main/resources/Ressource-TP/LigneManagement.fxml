@@ -2,42 +2,58 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.demo.controllers.controllers_TP.LigneManagementController"
-      spacing="20" alignment="CENTER" style="-fx-background-color: #f5f5f5;">
+      spacing="20" style="-fx-background-color: #f5f6fa;"
+      prefWidth="1024" prefHeight="768">
+
+    <stylesheets>
+        <URL value="@/Ressource-TP/Style-Gestion-Stration-TP.css"/>
+    </stylesheets>
 
     <padding>
-        <Insets top="25" right="25" bottom="25" left="25"/>
+        <Insets top="30" right="40" bottom="30" left="40"/>
     </padding>
 
-    <Text text="Gestion des Lignes" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #333333;"/>
-
-    <!-- TableView for displaying Lignes -->
-    <TableView fx:id="ligneTable" prefHeight="400" prefWidth="600" style="-fx-border-color: #cccccc; -fx-border-radius: 4;">
-        <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="nameColumn" text="Nom" prefWidth="150"/>
-            <TableColumn fx:id="regionColumn" text="Région" prefWidth="100"/>
-            <TableColumn fx:id="prixVIPColumn" text="Prix VIP" prefWidth="100"/>
-            <TableColumn fx:id="prixPremiumColumn" text="Prix Premium" prefWidth="100"/>
-            <TableColumn fx:id="prixEconoColumn" text="Prix Économique" prefWidth="100"/>
-        </columns>
-    </TableView>
-
-    <!-- Buttons -->
-    <HBox spacing="20" alignment="CENTER">
-        <Button fx:id="previousButton" text="Previous" onAction="#handlePrevious" prefWidth="120"
-                style="-fx-background-color: #9E9E9E; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
-        <Button fx:id="addButton" text="Ajouter" onAction="#goToAddLigne" prefWidth="120"
-                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
-        <Button fx:id="modifyButton" text="Modifier" onAction="#goToModifyLigne" prefWidth="120"
-                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
-        <Button fx:id="deleteButton" text="Supprimer" onAction="#deleteLigne" prefWidth="120"
-                style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
+    <!-- Header Section -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Button fx:id="previousButton" text="◄ Back" onAction="#handlePrevious" styleClass="nav-button"/>
+        <Text text="Gestion des Lignes" styleClass="header-text"/>
     </HBox>
 
-    <!-- Success/Error Message -->
-    <Label fx:id="messageLabel" text="" visible="false" style="-fx-font-size: 14px;" GridPane.halignment="CENTER"/>
+    <!-- Action Buttons -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button fx:id="addButton" text="+ Ajouter Ligne" onAction="#goToAddLigne" styleClass="action-button"/>
+    </HBox>
+
+    <!-- Lignes List -->
+    <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+        <GridPane fx:id="gridPane" styleClass="grid-pane">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="10"/>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="10"/>
+            </columnConstraints>
+
+            <!-- Header Row -->
+            <Label text="ID" styleClass="grid-header" GridPane.columnIndex="0"/>
+            <Label text="NOM" styleClass="grid-header" GridPane.columnIndex="1"/>
+            <Label text="RÉGION" styleClass="grid-header" GridPane.columnIndex="2"/>
+            <Label text="PRIX VIP" styleClass="grid-header" GridPane.columnIndex="3"/>
+            <Label text="PRIX PREMIUM" styleClass="grid-header" GridPane.columnIndex="4"/>
+            <Label text="PRIX ÉCONOMIQUE" styleClass="grid-header" GridPane.columnIndex="5"/>
+            <Label text="ACTIONS" styleClass="grid-header" GridPane.columnIndex="6"/>
+        </GridPane>
+    </ScrollPane>
+
+    <!-- Status Message -->
+    <Label fx:id="messageLabel" styleClass="status-message"/>
 </VBox>

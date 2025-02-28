@@ -9,11 +9,13 @@ import com.example.demo.services.services_TP.ReservationService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -113,12 +115,23 @@ public class AddReservationController {
             reservationService.add(reservation);
             showSuccessMessage("Reservation added successfully!");
             clearFields();
+            goBack();
         } catch (Exception e) {
             showErrorMessage("Error adding reservation: " + e.getMessage());
             e.printStackTrace();
         }
     }
-
+    @FXML
+    private void goBack() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Ressource-TP/ReservationManagement.fxml"));
+            Stage stage = (Stage) previousButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestion des Véhicules");
+        } catch (IOException e) {
+            showErrorMessage("Erreur lors du retour: " + e.getMessage());
+        }
+    }
     @FXML
     private void handlePrevious() {
         try {
