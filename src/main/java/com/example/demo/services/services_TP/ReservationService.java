@@ -25,7 +25,7 @@ public class ReservationService implements IService<Reservation> {
 
     @Override
     public void add(Reservation reservation) {
-        String query = "INSERT INTO reservations (reservation_date, travel_date, number_of_seats, ticket_category, status, total_price, vehicule_id, depart_station_id, fin_station_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO reservations (reservation_date, travel_date, number_of_seats, ticket_category, status, total_price,  depart_station_id, fin_station_id) VALUES (?, ?, ?, ?, ?, ?,  ?, ?)";
         try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
             pstmt.setTimestamp(1, Timestamp.valueOf(reservation.getReservationDate()));
             pstmt.setTimestamp(2, Timestamp.valueOf(reservation.getTravelDate()));
@@ -33,9 +33,9 @@ public class ReservationService implements IService<Reservation> {
             pstmt.setString(4, reservation.getTicketCategory().toString());
             pstmt.setString(5, reservation.getStatus().toString());
             pstmt.setDouble(6, reservation.getTotalPrice());
-            pstmt.setInt(7, reservation.getVehicule().getId());
-            pstmt.setInt(8, reservation.getDepartStation().getId());
-            pstmt.setInt(9, reservation.getFinStation().getId());
+
+            pstmt.setInt(7, reservation.getDepartStation().getId());
+            pstmt.setInt(8, reservation.getFinStation().getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

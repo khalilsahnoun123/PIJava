@@ -30,18 +30,9 @@
             </tooltip>
         </TextField>
 
-        <!-- Total Price -->
-        <Label text="Total Price:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="totalPriceField" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="200"
-                   style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 4;">
-            <tooltip>
-                <Tooltip text="Enter the total price of the reservation"/>
-            </tooltip>
-        </TextField>
-
         <!-- Travel Date -->
-        <Label text="Travel Date:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <DatePicker fx:id="travelDatePicker" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="200"
+        <Label text="Travel Date:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <DatePicker fx:id="travelDatePicker" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="200"
                     style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 4;">
             <tooltip>
                 <Tooltip text="Select the travel date"/>
@@ -49,39 +40,30 @@
         </DatePicker>
 
         <!-- Ticket Category -->
-        <Label text="Ticket Category:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <ChoiceBox fx:id="ticketCategoryChoice" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="200"
+        <Label text="Ticket Category:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ChoiceBox fx:id="ticketCategoryChoice" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="200"
                    style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 4;">
             <tooltip>
                 <Tooltip text="Select the ticket category"/>
             </tooltip>
         </ChoiceBox>
 
-        <!-- Status -->
-        <Label text="Status:" GridPane.rowIndex="5" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <ChoiceBox fx:id="statusChoice" GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="200"
-                   style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 4;">
-            <tooltip>
-                <Tooltip text="Select the reservation status"/>
-            </tooltip>
-        </ChoiceBox>
-
         <!-- Section 2: Trip Details -->
-        <Label text="Trip Details" GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.columnSpan="2"
+        <Label text="Trip Details" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2"
                style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
 
-        <!-- Vehicle -->
-        <Label text="Vehicle:" GridPane.rowIndex="7" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <ChoiceBox fx:id="vehicleChoice" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="200"
+        <!-- Select Line -->
+        <Label text="Select Line:" GridPane.rowIndex="5" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ChoiceBox fx:id="lineChoice" GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="200"
                    style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 4;">
             <tooltip>
-                <Tooltip text="Select the vehicle"/>
+                <Tooltip text="Select the line"/>
             </tooltip>
         </ChoiceBox>
 
         <!-- Departure Station -->
-        <Label text="Departure Station:" GridPane.rowIndex="8" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <ChoiceBox fx:id="departStationChoice" GridPane.rowIndex="8" GridPane.columnIndex="1" prefWidth="200"
+        <Label text="Departure Station:" GridPane.rowIndex="6" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ChoiceBox fx:id="departStationChoice" GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="200"
                    style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 4;">
             <tooltip>
                 <Tooltip text="Select the departure station"/>
@@ -89,8 +71,8 @@
         </ChoiceBox>
 
         <!-- Arrival Station -->
-        <Label text="Arrival Station:" GridPane.rowIndex="9" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <ChoiceBox fx:id="finStationChoice" GridPane.rowIndex="9" GridPane.columnIndex="1" prefWidth="200"
+        <Label text="Arrival Station:" GridPane.rowIndex="7" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ChoiceBox fx:id="finStationChoice" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="200"
                    style="-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 4;">
             <tooltip>
                 <Tooltip text="Select the arrival station"/>
@@ -98,13 +80,13 @@
         </ChoiceBox>
 
         <!-- Buttons and Message -->
-        <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="10" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="8" GridPane.columnIndex="0" GridPane.columnSpan="2">
             <Button fx:id="previousButton" text="Previous" onAction="#handlePrevious" prefWidth="120"
                     style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
             <Button fx:id="addButton" text="Add Reservation" onAction="#handleAddReservation" prefWidth="150"
                     style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
         </HBox>
-        <Label fx:id="messageLabel" visible="false" GridPane.rowIndex="11" GridPane.columnIndex="0" GridPane.columnSpan="2"
+        <Label fx:id="messageLabel" visible="false" GridPane.rowIndex="9" GridPane.columnIndex="0" GridPane.columnSpan="2"
                style="-fx-text-fill: green; -fx-font-size: 14px;" GridPane.halignment="CENTER"/>
     </GridPane>
 </VBox>

@@ -115,7 +115,6 @@ public class VehiculeController {
 
                 successLabel.setVisible(true);
                 clearForm();
-                goBack();
 
                 // Hide success message after 3 seconds
                 new Thread(() -> {
@@ -229,6 +228,4 @@ public class VehiculeController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
 }

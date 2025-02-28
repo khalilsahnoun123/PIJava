@@ -45,6 +45,22 @@ public class StationService implements IService<Station> {
         }
         return null;
     }
+    public List<Station> getStationByIdLigne(int id) {
+        List<Station> stations = new ArrayList<>();
+        String query = "SELECT * FROM stations WHERE ligne_id = ?";
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Station station = mapResultSetToStation(rs);
+                System.out.println("fetching station from database  : " + station);
+                stations.add(station);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return stations;
+    }
 
     @Override
     public List<Station> getAll() {
