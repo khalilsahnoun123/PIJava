@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox fx:controller="com.example.demo.controllers.controllers_TP.ReservationManagementController"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="10">
+
+    <!-- Define padding using Insets -->
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <children>
+        <!-- Table View -->
+        <TableView fx:id="reservationTable">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="reservationDateColumn" text="Reservation Date" prefWidth="150"/>
+                <TableColumn fx:id="travelDateColumn" text="Travel Date" prefWidth="150"/>
+                <TableColumn fx:id="seatsColumn" text="Seats" prefWidth="70"/>
+                <TableColumn fx:id="ticketCategoryColumn" text="Ticket Category" prefWidth="100"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+                <TableColumn fx:id="totalPriceColumn" text="Total Price" prefWidth="100"/>
+                <TableColumn fx:id="vehicleColumn" text="Vehicle" prefWidth="80"/>
+                <TableColumn fx:id="departStationColumn" text="Depart Station" prefWidth="100"/>
+                <TableColumn fx:id="finStationColumn" text="Arrival Station" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Buttons -->
+        <HBox spacing="10" alignment="CENTER">
+            <children>
+                <Button fx:id="previousButton" text="Previous" onAction="#handlePrevious"
+                        style="-fx-background-color: #9E9E9E; -fx-text-fill: white;"/>
+                <Button fx:id="addButton" text="Add New" onAction="#handleAddReservation"/>
+                <Button fx:id="modifyButton" text="Modify" onAction="#handleModifyReservation"/>
+                <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteReservation"/>
+                <Button fx:id="refreshButton" text="Refresh" onAction="#handleRefresh"/>
+            </children>
+        </HBox>
+
+        <!-- Message Label -->
+        <Label fx:id="messageLabel" visible="false"/>
+    </children>
+</VBox>

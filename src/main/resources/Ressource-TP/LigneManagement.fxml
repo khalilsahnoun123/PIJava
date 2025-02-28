@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.demo.controllers.controllers_TP.LigneManagementController"
+      spacing="20" alignment="CENTER" style="-fx-background-color: #f5f5f5;">
+
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <Text text="Gestion des Lignes" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #333333;"/>
+
+    <!-- TableView for displaying Lignes -->
+    <TableView fx:id="ligneTable" prefHeight="400" prefWidth="600" style="-fx-border-color: #cccccc; -fx-border-radius: 4;">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="nameColumn" text="Nom" prefWidth="150"/>
+            <TableColumn fx:id="regionColumn" text="Région" prefWidth="100"/>
+            <TableColumn fx:id="prixVIPColumn" text="Prix VIP" prefWidth="100"/>
+            <TableColumn fx:id="prixPremiumColumn" text="Prix Premium" prefWidth="100"/>
+            <TableColumn fx:id="prixEconoColumn" text="Prix Économique" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <!-- Buttons -->
+    <HBox spacing="20" alignment="CENTER">
+        <Button fx:id="previousButton" text="Previous" onAction="#handlePrevious" prefWidth="120"
+                style="-fx-background-color: #9E9E9E; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
+        <Button fx:id="addButton" text="Ajouter" onAction="#goToAddLigne" prefWidth="120"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
+        <Button fx:id="modifyButton" text="Modifier" onAction="#goToModifyLigne" prefWidth="120"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
+        <Button fx:id="deleteButton" text="Supprimer" onAction="#deleteLigne" prefWidth="120"
+                style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
+    </HBox>
+
+    <!-- Success/Error Message -->
+    <Label fx:id="messageLabel" text="" visible="false" style="-fx-font-size: 14px;" GridPane.halignment="CENTER"/>
+</VBox>

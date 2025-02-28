@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.demo.controllers.controllers_TP.UpdateVehiculeController"
+      spacing="20" style="-fx-background-color: #ffffff; -fx-font-family: 'Segoe UI';">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <!-- Header -->
+    <Text text="Modifier un Véhicule" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: #2c3e50;"/>
+
+    <!-- Form -->
+    <GridPane hgap="10" vgap="15">
+        <Label text="ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-size: 14px;"/>
+        <TextField fx:id="idField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                   style="-fx-font-size: 14px; -fx-background-radius: 5;"/>
+
+        <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-size: 14px;"/>
+        <ComboBox fx:id="typeComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                  style="-fx-font-size: 14px;"/>
+
+        <Label text="Ligne:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-size: 14px;"/>
+        <ComboBox fx:id="ligneComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                  style="-fx-font-size: 14px;"/>
+
+        <Label text="VIP Max Passagers:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-size: 14px;"/>
+        <TextField fx:id="vipMaxField" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                   style="-fx-font-size: 14px; -fx-background-radius: 5;"/>
+
+        <Label text="Premium Max Passagers:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-size: 14px;"/>
+        <TextField fx:id="premiumMaxField" GridPane.columnIndex="1" GridPane.rowIndex="4"
+                   style="-fx-font-size: 14px; -fx-background-radius: 5;"/>
+
+        <Label text="Éco Max Passagers:" GridPane.columnIndex="0" GridPane.rowIndex="5" style="-fx-font-size: 14px;"/>
+        <TextField fx:id="economyMaxField" GridPane.columnIndex="1" GridPane.rowIndex="5"
+                   style="-fx-font-size: 14px; -fx-background-radius: 5;"/>
+
+        <Label text="VIP Disponibles:" GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-font-size: 14px;"/>
+        <TextField fx:id="vipAvailableField" GridPane.columnIndex="1" GridPane.rowIndex="6"
+                   style="-fx-font-size: 14px; -fx-background-radius: 5;"/>
+
+        <Label text="Premium Disponibles:" GridPane.columnIndex="0" GridPane.rowIndex="7" style="-fx-font-size: 14px;"/>
+        <TextField fx:id="premiumAvailableField" GridPane.columnIndex="1" GridPane.rowIndex="7"
+                   style="-fx-font-size: 14px; -fx-background-radius: 5;"/>
+
+        <Label text="Éco Disponibles:" GridPane.columnIndex="0" GridPane.rowIndex="8" style="-fx-font-size: 14px;"/>
+        <TextField fx:id="economyAvailableField" GridPane.columnIndex="1" GridPane.rowIndex="8"
+                   style="-fx-font-size: 14px; -fx-background-radius: 5;"/>
+    </GridPane>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="saveButton" text="Enregistrer" onAction="#saveVehicule"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 14px;
+                       -fx-padding: 10 20; -fx-background-radius: 8; -fx-font-weight: bold;"/>
+        <Button fx:id="previousButton" text="Précédent" onAction="#goBack"
+                style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-size: 14px;
+                       -fx-padding: 10 20; -fx-background-radius: 8;"/>
+    </HBox>
+
+    <!-- Message -->
+    <Label fx:id="messageLabel" text="" visible="false" style="-fx-font-size: 14px; -fx-padding: 5;"
+           alignment="CENTER" VBox.vgrow="ALWAYS"/>
+</VBox>

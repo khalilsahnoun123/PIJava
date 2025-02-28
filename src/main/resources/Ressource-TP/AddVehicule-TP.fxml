@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.demo.controllers.controllers_TP.VehiculeController"
+      spacing="10" alignment="CENTER" style="-fx-background-color: #f5f5f5;">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <Text text="Add a Vehicle" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #333333;"/>
+
+    <GridPane hgap="10" vgap="10" alignment="CENTER">
+        <!-- General Info -->
+        <Label text="Type:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="typeField" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="150"
+                  style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 4;"/>
+        <Label fx:id="typeErrorLabel" text="Required" textFill="red" visible="false"
+               GridPane.rowIndex="0" GridPane.columnIndex="2" style="-fx-font-size: 12px;"/>
+
+        <Label text="Line:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="ligneField" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="150"
+                  style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 4;"/>
+        <Label fx:id="ligneErrorLabel" text="Required" textFill="red" visible="false"
+               GridPane.rowIndex="1" GridPane.columnIndex="2" style="-fx-font-size: 12px;"/>
+
+        <!-- Maximum Passengers -->
+        <Label text="VIP Passengers:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="vipPassengersField" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="150"
+                   style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 4;"/>
+        <Label fx:id="vipErrorLabel" text="Required" textFill="red" visible="false"
+               GridPane.rowIndex="2" GridPane.columnIndex="2" style="-fx-font-size: 12px;"/>
+
+        <Label text="Premium:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="premiumPassengersField" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="150"
+                   style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 4;"/>
+        <Label fx:id="premiumErrorLabel" text="Required" textFill="red" visible="false"
+               GridPane.rowIndex="3" GridPane.columnIndex="2" style="-fx-font-size: 12px;"/>
+
+        <Label text="Economy:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="economyPassengersField" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="150"
+                   style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 4;"/>
+        <Label fx:id="economyErrorLabel" text="Required" textFill="red" visible="false"
+               GridPane.rowIndex="4" GridPane.columnIndex="2" style="-fx-font-size: 12px;"/>
+
+        <!-- Available Seats -->
+        <Label text="VIP Available:" GridPane.rowIndex="5" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="vipAvailableField" GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="150"
+                   style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 4;"/>
+        <Label fx:id="vipAvailableErrorLabel" text="Required" textFill="red" visible="false"
+               GridPane.rowIndex="5" GridPane.columnIndex="2" style="-fx-font-size: 12px;"/>
+
+        <Label text="Premium:" GridPane.rowIndex="6" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="premiumAvailableField" GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="150"
+                   style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 4;"/>
+        <Label fx:id="premiumAvailableErrorLabel" text="Required" textFill="red" visible="false"
+               GridPane.rowIndex="6" GridPane.columnIndex="2" style="-fx-font-size: 12px;"/>
+
+        <Label text="Economy:" GridPane.rowIndex="7" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="economyAvailableField" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="150"
+                   style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 4;"/>
+        <Label fx:id="economyAvailableErrorLabel" text="Required" textFill="red" visible="false"
+               GridPane.rowIndex="7" GridPane.columnIndex="2" style="-fx-font-size: 12px;"/>
+
+        <!-- Success Message -->
+        <Label fx:id="successLabel" text="Vehicle added successfully!" textFill="green" visible="false"
+               GridPane.rowIndex="8" GridPane.columnIndex="0" GridPane.columnSpan="3" style="-fx-font-size: 14px;"
+               GridPane.halignment="CENTER"/>
+
+        <!-- Buttons -->
+        <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="9" GridPane.columnIndex="0" GridPane.columnSpan="3">
+            <Button fx:id="saveButton" text="Save" onAction="#saveVehicule" prefWidth="120"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"
+                    disable="true"/>
+            <Button fx:id="previousButton" text="Back" onAction="#goBack" prefWidth="120"
+                    style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
+        </HBox>
+    </GridPane>
+</VBox>
