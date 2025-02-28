@@ -1,47 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
 
-<VBox fx:controller="com.example.demo.controllers.controllers_TP.ReservationManagementController"
-      xmlns:fx="http://javafx.com/fxml"
-      spacing="10">
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.demo.controllers.controllers_TP.ReservationManagementController"
+      spacing="20" style="-fx-background-color: #f5f6fa;"
+      prefWidth="1024" prefHeight="768">
 
-    <!-- Define padding using Insets -->
+    <stylesheets>
+        <URL value="@/Ressource-TP/Style-Gestion-Stration-TP.css"/>
+    </stylesheets>
+
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="30" right="40" bottom="30" left="40"/>
     </padding>
 
-    <children>
-        <!-- Table View -->
-        <TableView fx:id="reservationTable">
-            <columns>
-                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="reservationDateColumn" text="Reservation Date" prefWidth="150"/>
-                <TableColumn fx:id="travelDateColumn" text="Travel Date" prefWidth="150"/>
-                <TableColumn fx:id="seatsColumn" text="Seats" prefWidth="70"/>
-                <TableColumn fx:id="ticketCategoryColumn" text="Ticket Category" prefWidth="100"/>
-                <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
-                <TableColumn fx:id="totalPriceColumn" text="Total Price" prefWidth="100"/>
-                <TableColumn fx:id="vehicleColumn" text="Vehicle" prefWidth="80"/>
-                <TableColumn fx:id="departStationColumn" text="Depart Station" prefWidth="100"/>
-                <TableColumn fx:id="finStationColumn" text="Arrival Station" prefWidth="100"/>
-            </columns>
-        </TableView>
+    <!-- Header Section -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Button fx:id="previousButton" text="◄ Back" onAction="#handlePrevious" styleClass="nav-button"/>
+        <Text text="Reservation Management" styleClass="header-text"/>
+    </HBox>
 
-        <!-- Buttons -->
-        <HBox spacing="10" alignment="CENTER">
-            <children>
-                <Button fx:id="previousButton" text="Previous" onAction="#handlePrevious"
-                        style="-fx-background-color: #9E9E9E; -fx-text-fill: white;"/>
-                <Button fx:id="addButton" text="Add New" onAction="#handleAddReservation"/>
-                <Button fx:id="modifyButton" text="Modify" onAction="#handleModifyReservation"/>
-                <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteReservation"/>
-                <Button fx:id="refreshButton" text="Refresh" onAction="#handleRefresh"/>
-            </children>
-        </HBox>
+    <!-- Action Buttons -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button fx:id="addButton" text="+ Add Reservation" onAction="#handleAddReservation" styleClass="action-button"/>
+        <Button fx:id="refreshButton" text="Refresh" onAction="#loadData" styleClass="nav-button"/>
+    </HBox>
 
-        <!-- Message Label -->
-        <Label fx:id="messageLabel" visible="false"/>
-    </children>
+    <!-- Reservations List -->
+    <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+        <GridPane fx:id="gridPane" styleClass="grid-pane">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="5"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="7"/>
+                <ColumnConstraints percentWidth="12"/>
+                <ColumnConstraints percentWidth="12"/>
+                <ColumnConstraints percentWidth="10"/>
+                <ColumnConstraints percentWidth="10"/>
+                <ColumnConstraints percentWidth="10"/>
+                <ColumnConstraints percentWidth="10"/>
+                <ColumnConstraints percentWidth="10"/>
+            </columnConstraints>
+
+            <!-- Header Row -->
+            <Label text="ID" styleClass="grid-header" GridPane.columnIndex="0"/>
+            <Label text="Reservation Date" styleClass="grid-header" GridPane.columnIndex="1"/>
+            <Label text="Travel Date" styleClass="grid-header" GridPane.columnIndex="2"/>
+            <Label text="Seats" styleClass="grid-header" GridPane.columnIndex="3"/>
+            <Label text="Category" styleClass="grid-header" GridPane.columnIndex="4"/>
+            <Label text="Status" styleClass="grid-header" GridPane.columnIndex="5"/>
+            <Label text="Total Price" styleClass="grid-header" GridPane.columnIndex="6"/>
+            <Label text="Vehicle" styleClass="grid-header" GridPane.columnIndex="7"/>
+            <Label text="Departure" styleClass="grid-header" GridPane.columnIndex="8"/>
+            <Label text="Arrival" styleClass="grid-header" GridPane.columnIndex="9"/>
+            <Label text="Actions" styleClass="grid-header" GridPane.columnIndex="10"/>
+        </GridPane>
+    </ScrollPane>
+
+    <!-- Status Message -->
+    <Label fx:id="messageLabel" styleClass="status-message"/>
 </VBox>

@@ -23,11 +23,9 @@ public class StationManagementController {
     @FXML private Button addButton;
     @FXML private Button previousButton;
 
-    @FXML private Button modifyButton;
-    @FXML private Button deleteButton;
     private List<Station> stations;
     private StationService stationService = new StationService();
-    private Station selectedStation;
+
 
 
     @FXML
@@ -167,6 +165,7 @@ public class StationManagementController {
 
         if (alert.showAndWait().get() == ButtonType.OK) {
             stationService.delete(station.getId());
+
             showSuccessMessage(station.getNom() + " supprimée avec succès!");
             loadData();
         }
@@ -184,47 +183,7 @@ public class StationManagementController {
         }
     }
 
-    @FXML
-    private void goToModifyStation() {
-        if (selectedStation == null) {
-            showErrorMessage("Veuillez sélectionner une station à modifier.");
-            return;
-        }
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Ressource-TP/ModifyStation.fxml"));
-            Parent root = loader.load();
-            ModifyStationController controller = loader.getController();
-            controller.setStation(selectedStation);
-            Stage stage = (Stage) modifyButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Modifier une Station");
-        } catch (IOException e) {
-            showErrorMessage("Erreur lors de l'ouverture de la modification: " + e.getMessage());
-        }
-    }
 
-    @FXML
-    private void deleteStation() {
-        if (selectedStation == null) {
-            showErrorMessage("Veuillez sélectionner une station à supprimer.");
-            return;
-        }
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation de suppression");
-        alert.setHeaderText("Supprimer la station " + selectedStation.getNom() + " ?");
-        alert.setContentText("Cette action est irréversible. Êtes-vous sûr ?");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            try {
-                stationService.delete(selectedStation.getId());
-                showSuccessMessage("Station supprimée avec succès!");
-
-            } catch (Exception e) {
-                showErrorMessage("Erreur lors de la suppression: " + e.getMessage());
-            }
-        }
-    }
 
 
     private void showSuccessMessage(String message) {

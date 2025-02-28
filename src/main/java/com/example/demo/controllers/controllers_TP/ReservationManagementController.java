@@ -4,6 +4,7 @@ import com.example.demo.enums.enums_TP.ReservationStatus;
 import com.example.demo.enums.enums_TP.TicketCategory;
 import com.example.demo.models.models_TP.Reservation;
 import com.example.demo.services.services_TP.ReservationService;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -15,105 +16,172 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class ReservationManagementController {
 
-    @FXML private TableView<Reservation> reservationTable;
-    @FXML private TableColumn<Reservation, Integer> idColumn;
-    @FXML private TableColumn<Reservation, String> reservationDateColumn;
-    @FXML private TableColumn<Reservation, String> travelDateColumn;
-    @FXML private TableColumn<Reservation, Integer> seatsColumn;
-    @FXML private TableColumn<Reservation, TicketCategory> ticketCategoryColumn;
-    @FXML private TableColumn<Reservation, ReservationStatus> statusColumn;
-    @FXML private TableColumn<Reservation, Double> totalPriceColumn;
-    @FXML private TableColumn<Reservation, String> vehicleColumn;
-    @FXML private TableColumn<Reservation, String> departStationColumn;
-    @FXML private TableColumn<Reservation, String> finStationColumn;
-    @FXML private Button addButton;
-    @FXML private Button modifyButton;
-    @FXML private Button deleteButton;
-    @FXML private Button refreshButton;
-    @FXML private Button previousButton; // Added
+    @FXML private GridPane gridPane;
     @FXML private Label messageLabel;
+    @FXML private Button addButton;
+    @FXML private Button previousButton;
+    @FXML private Button refreshButton;
 
+    private List<Reservation> reservations;
     private ReservationService reservationService = new ReservationService();
-    private ObservableList<Reservation> reservationList = FXCollections.observableArrayList();
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    private ObservableList<Reservation> reservationList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        // Set up table columns
-        idColumn.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getReservationId()).asObject());
+        if (gridPane == null) {
+            gridPane = new GridPane();
+            gridPane.getStyleClass().add("grid-pane");
+        }
+        setupGrid();
+        styleComponents();
+        loadData();
+    }
+    private void setupGrid() {
+        gridPane.getColumnConstraints().clear();
 
-        reservationDateColumn.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getReservationDate().format(DATE_FORMATTER)));
+        // Column constraints (matches FXML percentages)
+        for (int i = 0; i < 11; i++) {
+            ColumnConstraints col = new ColumnConstraints();
+            col.setPercentWidth(i == 0 ? 5 : i == 3 ? 7 : 10);
+            gridPane.getColumnConstraints().add(col);
+        }
 
-        travelDateColumn.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getTravelDate().format(DATE_FORMATTER)));
+        addHeaderRow();
+    }
+    private void addHeaderRow() {
+        String[] headers = {"ID", "Reservation Date", "Travel Date", "Seats", "Category",
+                "Status", "Total Price", "Vehicle", "Departure", "Arrival", "Actions"};
+        for (int i = 0; i < headers.length; i++) {
+            Label header = new Label(headers[i]);
+            header.getStyleClass().add("grid-header");
+            gridPane.add(header, i, 0);
+        }
+    }
 
-        seatsColumn.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getNumberOfSeats()).asObject());
+    private void styleComponents() {
+        if (gridPane != null) {
+            gridPane.setHgap(10);
+            gridPane.setVgap(8);
+        }
+    }
 
-        ticketCategoryColumn.setCellValueFactory(cellData ->
-                new SimpleObjectProperty<>(cellData.getValue().getTicketCategory()));
+    public void loadData() {
+        reservations = reservationService.getAll();
+        refreshGrid();
+    }
 
-        statusColumn.setCellValueFactory(cellData ->
-                new SimpleObjectProperty<>(cellData.getValue().getStatus()));
+    private void refreshGrid() {
+        Platform.runLater(() -> {
+            gridPane.getChildren().removeIf(node ->
+                    GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0
+            );
 
-        totalPriceColumn.setCellValueFactory(cellData ->
-                new SimpleDoubleProperty(cellData.getValue().getTotalPrice()).asObject());
-
-        vehicleColumn.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getVehicule() != null ?
-                        String.valueOf(cellData.getValue().getVehicule().getId()) : "N/A"));
-
-        departStationColumn.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getDepartStation() != null ?
-                        String.valueOf(cellData.getValue().getDepartStation().getId()) : "N/A"));
-
-        finStationColumn.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getFinStation() != null ?
-                        String.valueOf(cellData.getValue().getFinStation().getId()) : "N/A"));
-
-        // Load initial data
-        loadReservationData();
-
-        // Enable modify/delete buttons only when a row is selected
-        reservationTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            modifyButton.setDisable(newSelection == null);
-            deleteButton.setDisable(newSelection == null);
+            int rowIndex = 1;
+            for (Reservation reservation : reservations) {
+                addReservationRow(reservation, rowIndex);
+                rowIndex++;
+            }
         });
-
-        // Initially disable modify and delete buttons
-        modifyButton.setDisable(true);
-        deleteButton.setDisable(true);
-
-        // Style buttons
-        styleButtons();
     }
 
-    private void loadReservationData() {
-        reservationList.clear();
-        reservationList.addAll(reservationService.getAll());
-        reservationTable.setItems(reservationList);
+    private void addReservationRow(Reservation reservation, int rowIndex) {
+        // ID
+        addGridCell(String.valueOf(reservation.getReservationId()), 0, rowIndex);
+
+        // Dates
+        addGridCell(reservation.getReservationDate().format(DATE_FORMATTER), 1, rowIndex);
+        addGridCell(reservation.getTravelDate().format(DATE_FORMATTER), 2, rowIndex);
+
+        // Numeric values
+        addGridCell(String.valueOf(reservation.getNumberOfSeats()), 3, rowIndex);
+        addGridCell(reservation.getTicketCategory().toString(), 4, rowIndex);
+        addGridCell(reservation.getStatus().toString(), 5, rowIndex);
+        addGridCell(String.format("$%.2f", reservation.getTotalPrice()), 6, rowIndex);
+
+        // Related entities
+        addGridCell(reservation.getVehicule() != null ?
+                String.valueOf(reservation.getVehicule().getId()) : "N/A", 7, rowIndex);
+        addGridCell(reservation.getDepartStation() != null ?
+                reservation.getDepartStation().getNom() : "N/A", 8, rowIndex);
+        addGridCell(reservation.getFinStation() != null ?
+                reservation.getFinStation().getNom() : "N/A", 9, rowIndex);
+
+        // Action Buttons
+        HBox actionBox = new HBox(10);
+        Button editButton = new Button("Edit");
+        Button deleteButton = new Button("Delete");
+
+        editButton.getStyleClass().add("grid-action-button");
+        deleteButton.getStyleClass().add("grid-action-button");
+
+        editButton.setOnAction(e -> handleEdit(reservation));
+        deleteButton.setOnAction(e -> handleDelete(reservation));
+
+        actionBox.getChildren().addAll(editButton, deleteButton);
+        gridPane.add(actionBox, 10, rowIndex);
+
+        // Hover effect
+        applyRowHoverEffect(rowIndex);
+    }
+    private void addGridCell(String value, int columnIndex, int rowIndex) {
+        Label label = new Label(value);
+        label.getStyleClass().add("grid-cell");
+        gridPane.add(label, columnIndex, rowIndex);
     }
 
-    private void styleButtons() {
-        addButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
-        modifyButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
-        deleteButton.setStyle("-fx-background-color: #F44336; -fx-text-fill: white;");
-        refreshButton.setStyle("-fx-background-color: #9E9E9E; -fx-text-fill: white;");
-        previousButton.setStyle("-fx-background-color: #9E9E9E; -fx-text-fill: white;");
-
-        // Hover effects
-        previousButton.setOnMouseEntered(e -> previousButton.setStyle("-fx-background-color: #757575; -fx-text-fill: white;"));
-        previousButton.setOnMouseExited(e -> previousButton.setStyle("-fx-background-color: #9E9E9E; -fx-text-fill: white;"));
+    private void applyRowHoverEffect(int rowIndex) {
+        gridPane.getChildren().forEach(node -> {
+            if (GridPane.getRowIndex(node) == rowIndex) {
+                node.setOnMouseEntered(e -> gridPane.getChildren()
+                        .filtered(n -> GridPane.getRowIndex(n) == rowIndex)
+                        .forEach(n -> n.setStyle("-fx-background-color: #f8f9fa;")));
+                node.setOnMouseExited(e -> gridPane.getChildren()
+                        .filtered(n -> GridPane.getRowIndex(n) == rowIndex)
+                        .forEach(n -> n.setStyle("")));
+            }
+        });
     }
+
+    private void handleEdit(Reservation reservation) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Ressource-TP/ModifyReservation.fxml"));
+            Parent root = loader.load();
+            ModifyReservationController controller = loader.getController();
+            controller.setReservationToModify(reservation);
+
+            Stage stage = (Stage) gridPane.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            showErrorMessage("Error: " + e.getMessage());
+        }
+    }
+
+    private void handleDelete(Reservation reservation) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Delete Reservation #" + reservation.getReservationId());
+        alert.setContentText("Are you sure you want to delete this reservation?");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            reservationService.delete(reservation.getReservationId());
+            showSuccessMessage("Reservation deleted successfully!");
+            loadData();
+        }
+    }
+
 
     @FXML
     private void handleAddReservation() {
@@ -128,56 +196,10 @@ public class ReservationManagementController {
         }
     }
 
-    @FXML
-    private void handleModifyReservation() {
-        Reservation selectedReservation = reservationTable.getSelectionModel().getSelectedItem();
-        if (selectedReservation != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Ressource-TP/ModifyReservation.fxml"));
-                Parent root = loader.load();
-                ModifyReservationController controller = loader.getController();
-                controller.setReservationToModify(selectedReservation);
 
-                Stage stage = (Stage) modifyButton.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Modify Reservation");
-            } catch (IOException e) {
-                showErrorMessage("Error loading modify page: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-    }
 
-    @FXML
-    private void handleDeleteReservation() {
-        Reservation selectedReservation = reservationTable.getSelectionModel().getSelectedItem();
-        if (selectedReservation != null) {
-            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmation.setTitle("Confirm Deletion");
-            confirmation.setHeaderText(null);
-            confirmation.setContentText("Are you sure you want to delete reservation #" +
-                    selectedReservation.getReservationId() + "?");
 
-            confirmation.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    try {
-                        reservationService.delete(selectedReservation.getReservationId());
-                        loadReservationData();
-                        showSuccessMessage("Reservation deleted successfully!");
-                    } catch (Exception e) {
-                        showErrorMessage("Error deleting reservation: " + e.getMessage());
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-    }
 
-    @FXML
-    private void handleRefresh() {
-        loadReservationData();
-        showSuccessMessage("Table refreshed successfully!");
-    }
 
     @FXML
     private void handlePrevious() {
