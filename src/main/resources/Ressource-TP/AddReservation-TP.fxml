@@ -52,6 +52,7 @@
         <Label text="Trip Details" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2"
                style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
 
+
         <!-- Select Line -->
         <Label text="Select Line:" GridPane.rowIndex="5" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
         <ChoiceBox fx:id="lineChoice" GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="200"

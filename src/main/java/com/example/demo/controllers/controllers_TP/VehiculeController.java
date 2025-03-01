@@ -221,6 +221,7 @@ public class VehiculeController {
         economyAvailableField.clear();
     }
 
+
     private void showErrorAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

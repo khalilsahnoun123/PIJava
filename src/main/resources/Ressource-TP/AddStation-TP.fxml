@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.demo.controllers.controllers_TP.AddStationController"
+      spacing="20" style="-fx-background-color: #f4f7fa; -fx-font-family: 'Segoe UI';">
+
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <!-- Header -->
+    <Text text="Ajouter une Station" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-fill: #2c3e50;"/>
+
+    <!-- Form Container with Shadow -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-padding: 20;">
+        <GridPane hgap="15" vgap="20">
+            <Label text="Nom :" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-size: 16px; -fx-text-fill: #34495e;"/>
+            <TextField fx:id="nomField" promptText="Entrez le nom de la station" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                       style="-fx-font-size: 14px; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #bdc3c7; -fx-padding: 8;"/>
+
+            <Label text="Adresse :" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-size: 16px; -fx-text-fill: #34495e;"/>
+            <TextField fx:id="adresseField" promptText="Entrez l'adresse" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                       style="-fx-font-size: 14px; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #bdc3c7; -fx-padding: 8;"/>
+
+            <Label text="Ligne :" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-size: 16px; -fx-text-fill: #34495e;"/>
+            <ComboBox fx:id="ligneComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                      style="-fx-font-size: 14px; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #bdc3c7;"/>
+        </GridPane>
+    </VBox>
+
+
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button fx:id="saveButton" text="Enregistrer" onAction="#saveStation"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;
+                       -fx-padding: 12 25; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);"
+           />
+        <Button fx:id="previousButton" text="Précédent" onAction="#goBack"
+                style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;
+                       -fx-padding: 12 25; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);"
+                />
+    </HBox>
+
+    <!-- Message -->
+    <Label fx:id="messageLabel" text="" visible="false" style="-fx-font-size: 14px; -fx-padding: 10; -fx-background-color: #ecf0f1; -fx-background-radius: 5;"
+           alignment="CENTER" VBox.vgrow="ALWAYS"/>
+</VBox>
