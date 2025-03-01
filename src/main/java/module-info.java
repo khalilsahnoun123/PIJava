@@ -1,22 +1,14 @@
-module com.example.demo {
+module tn.gestioncov {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
-
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-
-    requires com.almasb.fxgl.all;
-    requires static lombok;
-    requires java.persistence;
     requires java.sql;
+    requires itextpdf;
 
-    exports com.example.demo.controllers;
-    opens com.example.demo.controllers.controllers_TP to javafx.fxml;
 
-    exports com.example.demo.tests;
-    opens com.example.demo.tests to javafx.fxml;
+    exports controllers.controllers_cov;
+    opens controllers.controllers_cov to javafx.fxml;
+
+
+    exports tests;
+    opens tests to javafx.fxml;
 }

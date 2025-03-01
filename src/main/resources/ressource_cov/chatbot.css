@@ -1,0 +1,33 @@
+.root {
+    -fx-background-color: #f0f2f5;
+    -fx-padding: 10px;
+}
+
+#chatArea {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+
+#userInput {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 20px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+}
+
+#sendButton {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-border-radius: 20px;
+    -fx-padding: 8px 15px;
+}
+
+#sendButton:hover {
+    -fx-background-color: #0056b3;
+}
