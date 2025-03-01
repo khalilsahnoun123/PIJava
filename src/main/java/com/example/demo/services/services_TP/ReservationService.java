@@ -65,8 +65,10 @@ public class ReservationService implements IService<Reservation> {
         try (Statement stmt = cnx.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
+
                 reservations.add(mapResultSetToReservation(rs));
             }
+            System.out.println(reservations);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -83,7 +85,12 @@ public class ReservationService implements IService<Reservation> {
             pstmt.setString(4, reservation.getTicketCategory().toString());
             pstmt.setString(5, reservation.getStatus().toString());
             pstmt.setDouble(6, reservation.getTotalPrice());
-            pstmt.setInt(7, reservation.getVehicule().getId());
+            // Handle null vehicle
+            if (reservation.getVehicule() != null) {
+                pstmt.setInt(7, reservation.getVehicule().getId());
+            } else {
+                pstmt.setNull(7, Types.INTEGER);
+            }
             pstmt.setInt(8, reservation.getDepartStation().getId());
             pstmt.setInt(9, reservation.getFinStation().getId());
             pstmt.setInt(10, reservation.getReservationId());
@@ -105,6 +112,7 @@ public class ReservationService implements IService<Reservation> {
     }
 
     private Reservation mapResultSetToReservation(ResultSet rs) throws SQLException {
+        StationService stationService = new StationService();
         Reservation reservation = new Reservation();
         reservation.setReservationId(rs.getInt("reservation_id"));
         reservation.setReservationDate(rs.getTimestamp("reservation_date").toLocalDateTime());
@@ -116,23 +124,16 @@ public class ReservationService implements IService<Reservation> {
 
         int vehiculeId = rs.getInt("vehicule_id");
         if (vehiculeId > 0) {
-            Vehicule vehicule = new Vehicule();
-            vehicule.setId(vehiculeId);
-            reservation.setVehicule(vehicule);
-        }
+           VehiculeService vehiculeService = new VehiculeService();
+          reservation.setVehicule( vehiculeService.getVehiculeById(vehiculeId)  );      }
 
         int departStationId = rs.getInt("depart_station_id");
         if (departStationId > 0) {
-            Station departStation = new Station();
-            departStation.setId(departStationId);
-            reservation.setDepartStation(departStation);
-        }
+           reservation.setDepartStation(stationService.getStationById(departStationId)    );    }
 
         int finStationId = rs.getInt("fin_station_id");
         if (finStationId > 0) {
-            Station finStation = new Station();
-            finStation.setId(finStationId);
-            reservation.setFinStation(finStation);
+            reservation.setFinStation(stationService.getStationById(finStationId)    );
         }
 
         return reservation;

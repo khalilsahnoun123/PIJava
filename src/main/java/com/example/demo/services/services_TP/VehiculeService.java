@@ -5,6 +5,7 @@ package com.example.demo.services.services_TP;
 
 import com.example.demo.enums.enums_TP.TypeVehicule;
 import com.example.demo.interfaces.IService;
+import com.example.demo.models.models_TP.Station;
 import com.example.demo.models.models_TP.Vehicule;
 import com.example.demo.utils.MyDatabase;
 import java.sql.*;
@@ -112,5 +113,22 @@ public class VehiculeService implements IService<Vehicule> {
         return vehicule;
     }
 
+    public List<Vehicule> getVehiculesByLineId(int id) {
+        List<Vehicule> vehicules = new ArrayList<>();
+        String query = "SELECT * FROM vehicules WHERE ligne_id = ?";
+
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Vehicule v = mapResultSetToVehicule(rs);
+                System.out.println("fetching station from database  : " + v);
+                vehicules.add(v);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vehicules;
+    }
 }
 
