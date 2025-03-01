@@ -10,6 +10,9 @@ module com.example.demo {
     requires org.kordamp.bootstrapfx.core;
 
     requires com.almasb.fxgl.all;
+    requires static lombok;
+    requires java.persistence;
+    requires java.sql;
 
     exports com.example.demo.controllers;
     opens com.example.demo.controllers to javafx.fxml;

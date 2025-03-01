@@ -17,11 +17,9 @@ public class main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Load the FXML file
+        // Load the FXML fil]e
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Ressource-TP/Accueil-TP.fxml"));
         Parent root = loader.load();
 
-    public static void main(String[] args) {
-        launch();
     }
 }
