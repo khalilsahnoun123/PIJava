@@ -1,21 +1,26 @@
 package com.example.demo.controllers.controllers_velo;
 
-import com.example.demo.tests.HelloApplication;
+import com.example.demo.tests.main;
 import com.example.demo.models.models_velo.*;
 import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import com.example.demo.services.services_velo.PaymentService;
 import com.example.demo.services.services_velo.ReservationVeloService;
 import com.example.demo.services.services_velo.VeloService;
 import com.example.demo.services.services_velo.UserService;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
@@ -244,39 +249,18 @@ public class BikeSelectionController implements Initializable {
                 reservation.getPrice() * 1000 // Convert DT to millimes
         );
 
-        // Set payment details+
-            /*paymentRequest.setEmail(SessionManager.getInstance().getCurrentUser().getEmail());
-            paymentRequest.setFirstName(SessionManager.getInstance().getCurrentUser().getNom());
-            paymentRequest.setLastName(SessionManager.getInstance().getCurrentUser().getPrenom());
-            paymentRequest.setOrderId(String.valueOf(reservation.getId())); // Assuming reservation has an ID
-            paymentRequest.setDescription("Location vélo " + selectedBike.getIdVelo());
-            paymentRequest.setSuccessUrl("https://yourdomain.com/success");
-            paymentRequest.setFailUrl("https://yourdomain.com/failure");*/
-
         try {
             // 2. Initiate payment
             InitiatePaymentResponse paymentResponse = paymentService.initiatePayment(paymentRequest);
 
-            // 3. Open payment gateway
-            HostServices hostServices = getHostServices();
-            if (hostServices != null) {
-                hostServices.showDocument(paymentResponse.getPayUrl());
-            } else {
-                // Fallback: Copy URL to clipboard or show message
-                Clipboard clipboard = Clipboard.getSystemClipboard();
-                ClipboardContent content = new ClipboardContent();
-                content.putString(paymentResponse.getPayUrl());
-                clipboard.setContent(content);
+            // 3. Open payment gateway in WebView
+            openPaymentPage(paymentResponse.getPayUrl());
 
-                System.out.println("Ouvrez manuellement" +
-                        "Collez ce lien dans votre navigateur:\n" + paymentResponse.getPayUrl());
-            }
             // 4. Start payment monitoring
             startPaymentMonitoring(paymentResponse.getPaymentRef(), reservation);
 
         } catch (Exception e) {
             System.out.println("Échec de l'initialisation du paiement: " + e.getMessage());
-
         }
     }
 
@@ -344,9 +328,6 @@ public class BikeSelectionController implements Initializable {
             }
         }, 1, TimeUnit.HOURS);
     }
-    private HostServices getHostServices() {
-        return HelloApplication.getAppHostServices();
-    }
 
     private void showErrorAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -371,5 +352,29 @@ public class BikeSelectionController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    private void openPaymentPage(String url) {
+        Stage paymentStage = new Stage();
+        paymentStage.setTitle("Paiement");
 
+        // Create WebView for payment
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        webEngine.load(url); // Load the payment URL
+
+        // Add a close button
+        Button closeButton = new Button("Fermer");
+        closeButton.setOnAction(e -> paymentStage.close());
+
+        // Create a layout to hold the WebView and close button
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(10));
+        layout.getChildren().addAll(webView, closeButton);
+
+        // Create a scene and show the stage
+        Scene scene = new Scene(layout, 900, 600);
+        paymentStage.setScene(scene);
+        paymentStage.show();
+
+        System.out.println("Payment page opened in WebView.");
+    }
 }

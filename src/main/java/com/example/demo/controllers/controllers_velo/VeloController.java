@@ -52,7 +52,7 @@ public class VeloController implements Initializable {
     private String uploadedImagePath;
     private Velo selectedVeloForEdit;
     private static final Path VELO_IMAGE_DIR = Paths.get(
-            "C:\\Users\\jihen\\Desktop\\javaFXProject\\javaFXProject-Velo\\images"
+            "C:\\Users\\jihen\\Desktop\\PIJava\\images"
     );
 
     @FXML

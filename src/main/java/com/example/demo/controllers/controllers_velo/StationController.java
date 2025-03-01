@@ -50,7 +50,7 @@ public class StationController implements Initializable {
 
     // At the top of your controller class
     private static final Path IMAGE_DIR = Paths.get(
-            "C:\\Users\\jihen\\Desktop\\javaFXProject\\javaFXProject-Velo\\images"
+            "C:\\Users\\jihen\\Desktop\\PIJava\\images"
     );
 
     @FXML
