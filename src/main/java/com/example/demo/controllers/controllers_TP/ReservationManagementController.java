@@ -31,13 +31,13 @@ public class ReservationManagementController {
     @FXML private Label messageLabel;
     @FXML private Button addButton;
     @FXML private Button previousButton;
-    @FXML private Button refreshButton;
+
 
     private List<Reservation> reservations;
     private ReservationService reservationService = new ReservationService();
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    private ObservableList<Reservation> reservationList = FXCollections.observableArrayList();
+
 
     @FXML
     public void initialize() {
@@ -114,28 +114,85 @@ public class ReservationManagementController {
         // Related entities
         addGridCell(reservation.getVehicule() != null ?
                 String.valueOf(reservation.getVehicule().getId()) : "N/A", 7, rowIndex);
-        addGridCell(reservation.getDepartStation() != null ?
-                reservation.getDepartStation().getNom() : "N/A", 8, rowIndex);
-        addGridCell(reservation.getFinStation() != null ?
-                reservation.getFinStation().getNom() : "N/A", 9, rowIndex);
+
+        // Departure Station with Line
+        String departStationName = reservation.getDepartStation() != null ? reservation.getDepartStation().getNom() : "";
+        String departLineName = reservation.getDepartStation() != null && reservation.getDepartStation().getLigne() != null ?
+                reservation.getDepartStation().getLigne().getName() : "";
+        String departStationInfo = departStationName.isEmpty() || departLineName.isEmpty() ? "N/A" :
+                departStationName + " (" + departLineName + ")";
+        addGridCell(departStationInfo, 8, rowIndex);
+
+        // Arrival Station with Line
+        String finStationName = reservation.getFinStation() != null ? reservation.getFinStation().getNom() : "";
+        String finLineName = reservation.getFinStation() != null && reservation.getFinStation().getLigne() != null ?
+                reservation.getFinStation().getLigne().getName() : "";
+        String finStationInfo = finStationName.isEmpty() || finLineName.isEmpty() ? "N/A" :
+                finStationName + " (" + finLineName + ")";
+        addGridCell(finStationInfo, 9, rowIndex);
 
         // Action Buttons
         HBox actionBox = new HBox(10);
         Button editButton = new Button("Edit");
         Button deleteButton = new Button("Delete");
+        Button statusButton;
+
+        // Conditionally add "Cancel" or "Uncancel" button based on status
+        if (reservation.getStatus() == ReservationStatus.CANCELLED) {
+            statusButton = new Button("Uncancel");
+            statusButton.setOnAction(e -> handleUncancel(reservation));
+        } else {
+            statusButton = new Button("Cancel");
+            statusButton.setOnAction(e -> handleCancel(reservation));
+        }
 
         editButton.getStyleClass().add("grid-action-button");
         deleteButton.getStyleClass().add("grid-action-button");
+        statusButton.getStyleClass().add("grid-action-button");
 
         editButton.setOnAction(e -> handleEdit(reservation));
         deleteButton.setOnAction(e -> handleDelete(reservation));
 
-        actionBox.getChildren().addAll(editButton, deleteButton);
+        actionBox.getChildren().addAll(editButton, deleteButton, statusButton);
         gridPane.add(actionBox, 10, rowIndex);
 
         // Hover effect
         applyRowHoverEffect(rowIndex);
     }
+
+    private void handleCancel(Reservation reservation) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Cancel Reservation #" + reservation.getReservationId());
+        alert.setContentText("Are you sure you want to cancel this reservation?");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            reservation.setStatus(ReservationStatus.CANCELLED);
+            reservationService.update(reservation);
+            showSuccessMessage("Reservation canceled successfully!");
+            loadData();
+        }
+    }
+
+    private void handleUncancel(Reservation reservation) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Uncancel Reservation #" + reservation.getReservationId());
+        alert.setContentText("Are you sure you want to uncancel this reservation?");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            // Check vehicle ID and set status accordingly
+            if (reservation.getVehicule() != null) {
+                reservation.setStatus(ReservationStatus.CONFIRMED);
+            } else {
+                reservation.setStatus(ReservationStatus.PENDING);
+            }
+            reservationService.update(reservation);
+            showSuccessMessage("Reservation uncanceled successfully!");
+            loadData();
+        }
+    }
+
     private void addGridCell(String value, int columnIndex, int rowIndex) {
         Label label = new Label(value);
         label.getStyleClass().add("grid-cell");
@@ -161,7 +218,7 @@ public class ReservationManagementController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Ressource-TP/ModifyReservation.fxml"));
             Parent root = loader.load();
             ModifyReservationController controller = loader.getController();
-            controller.setReservationToModify(reservation);
+            controller.setReservation(reservation);
 
             Stage stage = (Stage) gridPane.getScene().getWindow();
             stage.setScene(new Scene(root));
