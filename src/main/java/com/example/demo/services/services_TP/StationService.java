@@ -2,7 +2,7 @@ package com.example.demo.services.services_TP;
 
 
 
-import com.example.demo.interfaces.IService;
+import com.example.demo.interfaces.IService_TP;
 import com.example.demo.models.models_TP.Station;
 import com.example.demo.utils.MyDatabase;
 
@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StationService implements IService<Station> {
+public class StationService implements IService_TP<Station> {
     private Connection cnx;
 
     public StationService() {

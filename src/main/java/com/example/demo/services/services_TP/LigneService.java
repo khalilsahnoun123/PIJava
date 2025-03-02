@@ -3,14 +3,14 @@ package com.example.demo.services.services_TP;
 // Adjust the package if needed
 
 import com.example.demo.enums.enums_TP.Region;
-import com.example.demo.interfaces.IService;
+import com.example.demo.interfaces.IService_TP;
 import com.example.demo.models.models_TP.Ligne;
 import com.example.demo.utils.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LigneService implements IService<Ligne> {
+public class LigneService implements IService_TP<Ligne> {
     private Connection cnx;
 
     public LigneService() {

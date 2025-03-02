@@ -5,17 +5,15 @@ package com.example.demo.services.services_TP;
 
 import com.example.demo.enums.enums_TP.ReservationStatus;
 import com.example.demo.enums.enums_TP.TicketCategory;
-import com.example.demo.interfaces.IService;
+import com.example.demo.interfaces.IService_TP;
 import com.example.demo.models.models_TP.Reservation;
-import com.example.demo.models.models_TP.Station;
-import com.example.demo.models.models_TP.Vehicule;
 import com.example.demo.utils.MyDatabase;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationService implements IService<Reservation> {
+public class ReservationService implements IService_TP<Reservation> {
 
     private Connection cnx;
 
