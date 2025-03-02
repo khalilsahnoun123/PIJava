@@ -7,7 +7,7 @@ import com.example.demo.enums.enums_TP.ReservationStatus;
 import com.example.demo.enums.enums_TP.TicketCategory;
 import com.example.demo.interfaces.IService_TP;
 import com.example.demo.models.models_TP.Reservation;
-import com.example.demo.utils.MyDatabase;
+import com.example.demo.utils.MyDatabase_TP;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class ReservationService implements IService_TP<Reservation> {
     private Connection cnx;
 
     public ReservationService() {
-        cnx = MyDatabase.getInstance().getCnx();
+        cnx = MyDatabase_TP.getInstance().getCnx();
     }
 
     @Override

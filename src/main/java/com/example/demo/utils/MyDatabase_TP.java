@@ -9,15 +9,15 @@ import java.sql.SQLException;
 
 
 
-public class MyDatabase {
-    private static MyDatabase instance;
+public class MyDatabase_TP {
+    private static MyDatabase_TP instance;
     private final String URL ="jdbc:mysql://127.0.0.1:3306/cov";
     private final String USERNAME ="root";
     private final String PASSWORD = "";
     @Getter
     private Connection cnx ;
 
-    private MyDatabase() {
+    private MyDatabase_TP() {
         try {
             cnx = DriverManager.getConnection(URL,USERNAME,PASSWORD);
             System.out.println("connected ...");
@@ -27,9 +27,9 @@ public class MyDatabase {
     }
 
 
-    public static MyDatabase getInstance() {
+    public static MyDatabase_TP getInstance() {
         if (instance == null)
-            instance = new MyDatabase();
+            instance = new MyDatabase_TP();
         return instance;
     }
 

@@ -6,7 +6,7 @@ package com.example.demo.services.services_TP;
 import com.example.demo.enums.enums_TP.TypeVehicule;
 import com.example.demo.interfaces.IService_TP;
 import com.example.demo.models.models_TP.Vehicule;
-import com.example.demo.utils.MyDatabase;
+import com.example.demo.utils.MyDatabase_TP;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class VehiculeService implements IService_TP<Vehicule> {
     private Connection cnx;
 
     public VehiculeService() {
-        cnx = MyDatabase.getInstance().getCnx();
+        cnx = MyDatabase_TP.getInstance().getCnx();
     }
 
     @Override

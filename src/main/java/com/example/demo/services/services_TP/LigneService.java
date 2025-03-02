@@ -14,7 +14,7 @@ public class LigneService implements IService_TP<Ligne> {
     private Connection cnx;
 
     public LigneService() {
-        cnx = MyDatabase.getInstance().getCnx();
+        cnx = MyDatabase_TP.getInstance().getCnx();
     }
 
     @Override

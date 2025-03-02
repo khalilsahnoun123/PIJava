@@ -4,7 +4,7 @@ package com.example.demo.services.services_TP;
 
 import com.example.demo.interfaces.IService_TP;
 import com.example.demo.models.models_TP.Station;
-import com.example.demo.utils.MyDatabase;
+import com.example.demo.utils.MyDatabase_TP;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class StationService implements IService_TP<Station> {
     private Connection cnx;
 
     public StationService() {
-        cnx = MyDatabase.getInstance().getCnx();
+        cnx = MyDatabase_TP.getInstance().getCnx();
     }
 
 
