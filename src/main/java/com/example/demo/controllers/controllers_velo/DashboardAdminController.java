@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class DashboardAdminController {
 
+    public Button btnGestionTransportpublic;
     @FXML
     private Button btnHome;
 
@@ -20,10 +21,15 @@ public class DashboardAdminController {
     @FXML
     private AnchorPane view_pages;
 
+
     @FXML
     void switchForm(ActionEvent event) throws IOException {
         if(event.getSource()==btnReservationVelo){
             Parent fxml= FXMLLoader.load(getClass().getResource("/resource-Velo/StationAdminManagement.fxml"));
+            view_pages.getChildren().removeAll();
+            view_pages.getChildren().setAll(fxml);
+        }else if(event.getSource()==btnGestionTransportpublic){
+            Parent fxml= FXMLLoader.load(getClass().getResource("/Ressource-TP/Accueil-TP.fxml"));
             view_pages.getChildren().removeAll();
             view_pages.getChildren().setAll(fxml);
         }

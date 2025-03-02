@@ -4,7 +4,7 @@ module com.example.demo {
     requires java.sql;
     requires java.desktop;
     requires java.net.http;
-    requires json.simple;
+
     requires com.fasterxml.jackson.databind;
 
     requires javafx.web;
@@ -22,9 +22,9 @@ module com.example.demo {
     requires com.almasb.fxgl.all;
     requires static lombok;
     requires java.persistence;
-    requires java.sql;
 
-    exports com.example.demo.controllers;
+
+    exports com.example.demo.controllers.controllers_TP;
     opens com.example.demo.controllers.controllers_TP to javafx.fxml;
 
     exports com.example.demo.tests;

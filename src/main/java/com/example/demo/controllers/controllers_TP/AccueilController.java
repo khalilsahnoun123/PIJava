@@ -1,5 +1,6 @@
 package com.example.demo.controllers.controllers_TP;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 public class AccueilController {
 
+    @FXML private  Button GoBack;
     @FXML private Button reservationManagementButton;
     @FXML private Button ligneManagementButton;
     @FXML private Button vehicleManagementButton;
@@ -99,6 +101,18 @@ public class AccueilController {
                     e.printStackTrace();
                 }
             }).start();
+        }
+    }
+    @FXML
+    private void handlePrevious() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/DashboardAdmin.fxml"));
+            Stage stage = (Stage) GoBack.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dashboard");
+        } catch (IOException e) {
+            showErrorMessage("Error returning to home: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
