@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="mainAnchorPane" prefHeight="534" prefWidth="966" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.controllers_velo.VeloTypeController">
+
+    <HBox prefHeight="534.0" prefWidth="966" spacing="15">
+        <!-- Formulaire (35% de l'espace) -->
+        <VBox prefWidth="330" spacing="10" style="-fx-padding: 10; -fx-background-color: #f5f5f5;">
+            <ImageView fx:id="typeImagePreview" fitHeight="130" fitWidth="280" style="-fx-border-color: #ccc; -fx-border-width: 1;" />
+
+            <Button onAction="#handleUploadImage" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-pref-width: 280;" text="Upload Image" />
+
+            <TextField fx:id="typeNameField" prefWidth="280" promptText="Nom du type" />
+            <TextArea fx:id="typeDescriptionField" prefRowCount="3" prefWidth="280" promptText="Description" />
+            <TextField fx:id="typePriceField" prefWidth="280" promptText="Prix (DT/h)" />
+
+            <HBox spacing="10" style="-fx-padding: 5 0;">
+                <Button onAction="#handleSaveType" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-pref-width: 135;" text="Sauvegarder" />
+                <Button onAction="#clearForm" style="-fx-background-color: #9E9E9E; -fx-text-fill: white; -fx-pref-width: 135;" text="Annuler" />
+            </HBox>
+
+            <Button onAction="#handleReturnToStations" style="-fx-background-color: #FF5722; -fx-text-fill: white; -fx-pref-width: 280;" text="Retour aux stations" />
+        </VBox>
+
+        <!-- Liste des types (65% de l'espace) -->
+        <ScrollPane prefHeight="500.0" prefWidth="621" style="-fx-padding: 0 5;">
+            <FlowPane fx:id="typesContainer" hgap="10" prefWrapLength="610" style="-fx-padding: 5;" vgap="10" />
+        </ScrollPane>
+    </HBox>
+</AnchorPane>

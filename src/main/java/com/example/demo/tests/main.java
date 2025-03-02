@@ -1,7 +1,7 @@
 package com.example.demo.tests;
 
-
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,23 +10,19 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class main extends Application {
-    public static void main(String[] args) {
-        launch(args);
-    }
-
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        // Load the FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Ressource-TP/Accueil-TP.fxml"));
-        Parent root = loader.load();
+    public void start(Stage stage) throws IOException {
+        //Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));//Dashboard covoitureur
+      // Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/ReserverVelo.fxml"));//Dashboard USER
+       Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/DashboardAdmin.fxml"));//Dashboard Admin
 
-        // Set up the scene
-        Scene scene = new Scene(root, 400, 300);
+        stage.setTitle("Wasalni | 2025");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
-        // Set up the stage
-        primaryStage.setTitle("Accueil Management");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public static void main(String[] args) {
+        launch();
     }
 }
