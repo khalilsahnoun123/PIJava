@@ -30,6 +30,8 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
 
 public class listCovoiturageController implements Initializable {
 
@@ -46,9 +48,9 @@ public class listCovoiturageController implements Initializable {
             ServiceCovoiturage sc = new ServiceCovoiturage();
             List<Covoiturage> covs = sc.Show();
 
-            for(int i=0;i<covs.size();i++) {
+            for (int i = 0; i < covs.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ressource_cov/itemCovoiturage.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/ressource_cov/itemCovoiturage.fxml"));
                 try {
                     AnchorPane anchorPane = fxmlLoader.load();
                     HBox hBox = (HBox) anchorPane.getChildren().get(0);
@@ -66,72 +68,81 @@ public class listCovoiturageController implements Initializable {
 
     @FXML
     void genererPDF(MouseEvent event) {
-        // Afficher la boîte de dialogue de sélection de fichier
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Enregistrer le fichier PDF");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichiers PDF", "*.pdf"));
         File selectedFile = fileChooser.showSaveDialog(((Node) event.getSource()).getScene().getWindow());
 
         if (selectedFile != null) {
-            // Générer le fichier PDF avec l'emplacement de sauvegarde sélectionné
-            // Récupérer la liste des produits
             ServiceCovoiturage rs = new ServiceCovoiturage();
             List<Covoiturage> covList = rs.Show();
 
             try {
-                // Créer le document PDF
                 Document document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream(selectedFile));
                 document.open();
 
+                // Créer un tableau pour structurer le logo et le titre
+                PdfPTable headerTable = new PdfPTable(2);
+                headerTable.setWidthPercentage(100);
+                headerTable.setWidths(new float[]{1, 3});
 
-                // Créer une police personnalisée pour la date
+                // Charger le logo
+                String imagePath = "src/main/resources/ressource_cov//img/logo.png";
+                Image logo = Image.getInstance(imagePath);
+                logo.scaleToFit(70, 70);
+                PdfPCell logoCell = new PdfPCell(logo);
+                logoCell.setBorder(Rectangle.NO_BORDER);
+                logoCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+
+                // Ajouter le titre "Wasalni"
+                Font wasalniFont = new Font(Font.FontFamily.TIMES_ROMAN, 26, Font.BOLD, new BaseColor(52, 69, 158));
+                Paragraph wasalniTitle = new Paragraph("Wasalni", wasalniFont);
+                wasalniTitle.setAlignment(Element.ALIGN_LEFT);
+                PdfPCell titleCell = new PdfPCell(wasalniTitle);
+                titleCell.setBorder(Rectangle.NO_BORDER);
+                titleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                titleCell.setPaddingLeft(10);
+
+                headerTable.addCell(logoCell);
+                headerTable.addCell(titleCell);
+                document.add(headerTable);
+
+                // Ajouter la date et le lieu à droite
                 Font fontDate = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-                BaseColor color = new BaseColor(52, 69, 158); // Rouge: 114, Vert: 0, Bleu: 0
-                fontDate.setColor(color); // Définir la couleur de la police
+                BaseColor color = new BaseColor(52, 69, 158);
+                fontDate.setColor(color);
 
-                // Créer un paragraphe avec le lieu
-                Paragraph tunis = new Paragraph("Ariana", fontDate);
-                tunis.setIndentationLeft(455); // Définir la position horizontale
-                tunis.setSpacingBefore(-30); // Définir la position verticale
-                // Ajouter le paragraphe au document
-                document.add(tunis);
-
-                // Obtenir la date d'aujourd'hui
                 LocalDate today = LocalDate.now();
+                Paragraph arianaDate = new Paragraph("Ariana\n" + today.toString(), fontDate);
+                arianaDate.setAlignment(Element.ALIGN_RIGHT);
+                arianaDate.setSpacingBefore(-50);
+                document.add(arianaDate);
 
-                // Créer un paragraphe avec la date
-                Paragraph date = new Paragraph(today.toString(), fontDate);
-
-                date.setIndentationLeft(437); // Définir la position horizontale
-                date.setSpacingBefore(1); // Définir la position verticale
-                // Ajouter le paragraphe au document
-                document.add(date);
-
-                // Créer une police personnalisée
+                // Ajouter le titre principal
                 Font font = new Font(Font.FontFamily.TIMES_ROMAN, 32, Font.BOLD);
-                BaseColor titleColor = new BaseColor(52, 69, 158); //
+                BaseColor titleColor = new BaseColor(52, 69, 158);
                 font.setColor(titleColor);
 
-                // Ajouter le contenu au document
                 Paragraph title = new Paragraph("Liste des Covoiturages", font);
                 title.setAlignment(Element.ALIGN_CENTER);
-                title.setSpacingBefore(50); // Ajouter une marge avant le titre pour l'éloigner de l'image
+                title.setSpacingBefore(50);
                 title.setSpacingAfter(20);
                 document.add(title);
 
-                PdfPTable table = new PdfPTable(4); // 5 colonnes pour les 5 attributs des reclamations
+                // Table des covoiturages
+                PdfPTable table = new PdfPTable(4);
                 table.setWidthPercentage(100);
                 table.setSpacingBefore(30f);
                 table.setSpacingAfter(30f);
 
-                // Ajouter les en-têtes de colonnes
+                // En-têtes de colonnes
                 Font hrFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-                BaseColor hrColor = new BaseColor(255, 255, 255); //
+                BaseColor hrColor = new BaseColor(255, 255, 255);
                 hrFont.setColor(hrColor);
+                BaseColor bgColor = new BaseColor(52, 69, 158);
 
                 PdfPCell cell1 = new PdfPCell(new Paragraph("Départ", hrFont));
-                BaseColor bgColor = new BaseColor(52, 69, 158);
                 cell1.setBackgroundColor(bgColor);
                 cell1.setBorderColor(titleColor);
                 cell1.setPaddingTop(20);
@@ -164,10 +175,8 @@ public class listCovoiturageController implements Initializable {
                 table.addCell(cell3);
                 table.addCell(cell4);
 
-                Font hdFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL);
-                BaseColor hdColor = new BaseColor(255, 255, 255); //
-                hrFont.setColor(hdColor);
                 // Ajouter les données des covoiturages
+                Font hdFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL);
                 for (Covoiturage cov : covList) {
                     PdfPCell cellR1 = new PdfPCell(new Paragraph(cov.getPoint_de_depart(), hdFont));
                     cellR1.setBorderColor(titleColor);
@@ -196,8 +205,8 @@ public class listCovoiturageController implements Initializable {
                     cellR4.setPaddingBottom(10);
                     cellR4.setHorizontalAlignment(Element.ALIGN_CENTER);
                     table.addCell(cellR4);
-
                 }
+
                 table.setSpacingBefore(20);
                 document.add(table);
                 document.close();
@@ -208,6 +217,5 @@ public class listCovoiturageController implements Initializable {
             }
         }
     }
-
 
 }

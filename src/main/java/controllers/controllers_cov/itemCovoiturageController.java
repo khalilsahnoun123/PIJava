@@ -75,7 +75,7 @@ public class itemCovoiturageController implements Initializable {
 
     @FXML
     void open_UpdateCovoiturage(ActionEvent event) throws IOException {
-        Parent fxml= FXMLLoader.load(getClass().getResource("updateCovoiturage.fxml"));
+        Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/updateCovoiturage.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Update Covoiturage");
         stage.setScene(new Scene(fxml));

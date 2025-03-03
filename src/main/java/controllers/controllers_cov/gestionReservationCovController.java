@@ -31,11 +31,11 @@ public class gestionReservationCovController implements Initializable {
     @FXML
     void goToPages(ActionEvent event) throws IOException {
         if(event.getSource()== btnAddReservationCov){
-            Parent fxml= FXMLLoader.load(getClass().getResource("addReservationCov.fxml"));
+            Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/addReservationCov.fxml"));
             gestionReservationCovPane.getChildren().removeAll();
             gestionReservationCovPane.getChildren().setAll(fxml);
         }else if(event.getSource()==btnListReservationCov){
-            Parent fxml= FXMLLoader.load(getClass().getResource("listReservationCov.fxml"));
+            Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/listReservationCov.fxml"));
             gestionReservationCovPane.getChildren().removeAll();
             gestionReservationCovPane.getChildren().setAll(fxml);
         }

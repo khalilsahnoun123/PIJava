@@ -11,7 +11,7 @@ import java.io.IOException;
 public class main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        //Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/ressource_cov/hello-view.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/ressource_cov/listCovoiturageFront.fxml"));
         stage.setTitle("wasalni | 2026");
         stage.setScene(new Scene(root));

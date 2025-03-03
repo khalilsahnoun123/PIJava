@@ -37,7 +37,7 @@ public class listReservationCovController implements Initializable {
 
             for(int i=0;i<rescovs.size();i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ressource_cov/itemReservationCov.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/ressource_cov/itemReservationCov.fxml"));
                 try {
                     AnchorPane anchorPane = fxmlLoader.load();
                     HBox hBox = (HBox) anchorPane.getChildren().get(0);
@@ -55,7 +55,7 @@ public class listReservationCovController implements Initializable {
 
     @FXML
     void open_Stat(ActionEvent event)throws IOException {
-        Parent fxml= FXMLLoader.load(getClass().getResource("Statistiques.fxml"));
+        Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/Statistiques.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Statistiques des Reservations Covoiturage");
         stage.setScene(new Scene(fxml));

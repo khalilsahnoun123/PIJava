@@ -46,7 +46,7 @@ public class updateReservationCovController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("ressource_cov/itemReservationCov.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ressource_cov/itemReservationCov.fxml"));
         try {
             AnchorPane anchorPane = fxmlLoader.load();
             HBox hBox = (HBox) anchorPane.getChildren().get(0);

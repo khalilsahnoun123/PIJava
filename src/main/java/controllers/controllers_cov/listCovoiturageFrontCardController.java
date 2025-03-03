@@ -51,7 +51,7 @@ public class listCovoiturageFrontCardController implements Initializable {
 
     @FXML
     void open_ajouterReservation(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("addReservationCovFront.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ressource_cov/addReservationCovFront.fxml"));
         Parent fxml = loader.load();
 
         // Get the controller of the next page

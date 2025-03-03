@@ -69,7 +69,7 @@ public class itemReservationCovController implements Initializable {
 
     @FXML
     void open_UpdateReservationCov(ActionEvent event) throws IOException {
-        Parent fxml= FXMLLoader.load(getClass().getResource("updateReservationCov.fxml"));
+        Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/updateReservationCov.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Update Reservation Covoiturage");
         stage.setScene(new Scene(fxml));

@@ -31,11 +31,11 @@ public class gestionCovoiturageController implements Initializable {
     @FXML
     void goToPages(ActionEvent event) throws IOException {
         if(event.getSource()== btnAddCovoiturage){
-            Parent fxml= FXMLLoader.load(getClass().getResource("addCovoiturage.fxml"));
+            Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/addCovoiturage.fxml"));
             gestionCovoituragePane.getChildren().removeAll();
             gestionCovoituragePane.getChildren().setAll(fxml);
         }else if(event.getSource()==btnListCovoiturage){
-            Parent fxml= FXMLLoader.load(getClass().getResource("listCovoiturage.fxml"));
+            Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/listCovoiturage.fxml"));
             gestionCovoituragePane.getChildren().removeAll();
             gestionCovoituragePane.getChildren().setAll(fxml);
         }

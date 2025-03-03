@@ -22,11 +22,11 @@ public class HelloController {
     @FXML
     void switchForm(ActionEvent event) throws IOException {
         if(event.getSource()== btnCovoiturage){
-            Parent fxml= FXMLLoader.load(getClass().getResource("gestionCovoiturage.fxml"));
+            Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/gestionCovoiturage.fxml"));
             view_pages.getChildren().removeAll();
             view_pages.getChildren().setAll(fxml);
         }else if(event.getSource()==btnReservationCov){
-            Parent fxml= FXMLLoader.load(getClass().getResource("gestionReservationCov.fxml"));
+            Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/gestionReservationCov.fxml"));
             view_pages.getChildren().removeAll();
             view_pages.getChildren().setAll(fxml);
         }
