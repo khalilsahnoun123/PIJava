@@ -336,10 +336,10 @@ public class loginController implements Initializable {
                 return "/Ressource-TP/AcceuilAdmin.fxml";
             case COVOITUREUR:
                 return "/com/example/demo/AcceuilCovoitureur.fxml";
-            case CHAUFFEUR:
+            case CHAUFFEUR_TAXI:
                 return "/com/example/demo/AcceuilChauffeur.fxml";
-            case TAXI:
-                return "/com/example/demo/AcceuilTaxi.fxml";
+            case VOYAGEUR:
+                return "/com/example/demo/AcceuilVoyageur.fxml";
             default:
                 return "/Ressource-TP/AcceuilUser.fxml";
         }

@@ -149,7 +149,7 @@ public class RegistreUserController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        roleComboBox.getItems().addAll("ADMIN", "COVOITUREUR", "CHAUFFEUR", "TAXI");
+        roleComboBox.getItems().addAll("ADMIN", "COVOITUREUR", "CHAUFFEUR_TAXI", "USER","VOYAGEUR");
     }
 
     private void showAlert(String title, String message) {
