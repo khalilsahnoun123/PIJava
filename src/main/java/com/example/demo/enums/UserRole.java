@@ -1,7 +1,7 @@
 package com.example.demo.enums;
 
 public enum UserRole {
-    ADMIN, COVOITUREUR, CHAUFFEUR, TAXI;
+    ADMIN, COVOITUREUR, CHAUFFEUR_TAXI, USER,VOYAGEUR ;
 
     public static UserRole fromString(String role) {
         try {
