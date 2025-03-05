@@ -132,7 +132,24 @@ public class addReservationTaxiController implements Initializable {
         ServiceReservationTaxi rts = new ServiceReservationTaxi();
         rts.ajouter(res_taxi);
     }
+void send_sms(){
+        String ACCOUNT_SID = "AC0761c4dc935f80188bb7a8031b1c9b46";
+        String AUTH_TOKEN = "8a5c4c0b279e859a3b98dd4a701b62e7";
 
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+        String recepientNumber = "+21653099094";
+        String message = "Bonjour Mr, \n"
+                +"Nous sommes ravis de vous informer qu'une reservation a été effectuée.\n"
+                +"Veuillez contactez l'administration pour plus de details. \n"
+                +"Merci de votre fidélité et à bientôt.\n"
+                +"Cordialement, \n";
+
+        Message twilioMessage = Message.creator(
+                new PhoneNumber(recepientNumber),
+                new PhoneNumber("+14064123283"),message).create();
+        System.out.println("SMS envoyé : "+twilioMessage.getSid());
+    }
 
 }
 
