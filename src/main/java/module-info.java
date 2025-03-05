@@ -2,6 +2,7 @@ module com.example.demo {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires itextpdf;
     requires java.desktop;
     requires java.net.http;
 
@@ -23,10 +24,13 @@ module com.example.demo {
     requires static lombok;
     requires java.persistence;
 
+    exports controllers.controllers_cov;
+    opens controllers.controllers_cov to javafx.fxml;
 
     exports com.example.demo.controllers.controllers_TP;
     opens com.example.demo.controllers.controllers_TP to javafx.fxml;
 
-    exports com.example.demo.tests;
-    opens com.example.demo.tests to javafx.fxml;
+
+    exports tests;
+    opens tests to javafx.fxml;
 }
