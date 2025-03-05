@@ -3,7 +3,9 @@ package com.example.demo.models.models_velo;
 public class User {
     private  int id_user;
     private String nom;
-    //private String urlimage;
+    private String gouvernorat;
+    private String municipalite;
+    private String adresse;
 
     public User() {
     }
@@ -29,7 +31,22 @@ public class User {
 
     public void setNom(String username) { this.nom = username; }
 
-
+    public String getGouvernorat() { return gouvernorat; }
+    public void setGouvernorat(String gouvernorat) {
+        this.gouvernorat = gouvernorat;
+    }
+    public String getMunicipalite() {
+        return municipalite;
+    }
+    public void setMunicipalite(String municipalite) {
+        this.municipalite = municipalite;
+    }
+    public String getAdresse() {
+        return adresse;
+    }
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
 
 
     //public String getUrlimage() { return urlimage; }

@@ -56,7 +56,7 @@
                </HBox.margin>
             </Label>
             <Pane prefHeight="54.0" prefWidth="345.0" />
-            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="92.0" styleClass="btn" stylesheets="@style.css" text="Home">
+            <Button fx:id="buttonHome" mnemonicParsing="false" onAction="#buttonHomeOnAction" prefHeight="36.0" prefWidth="92.0" styleClass="btn" stylesheets="@style.css" text="Home">
                <HBox.margin>
                   <Insets top="9.0" />
                </HBox.margin>

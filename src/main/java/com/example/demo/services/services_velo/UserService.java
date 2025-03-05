@@ -20,7 +20,6 @@ public class UserService implements IService<User> {
     @Override
     public void insert(User user) {
 
-        Connection cnx = MyDatabase.getInstance().getConx();
 
 
         if (cnx == null) {
@@ -171,6 +170,10 @@ public class UserService implements IService<User> {
                 user = new User();
                 user.setId_user(rs.getInt("id"));
                 user.setNom(rs.getString("nom"));
+                user.setGouvernorat(rs.getString("gouvernorat"));
+                user.setMunicipalite(rs.getString("municipalite"));
+                user.setAdresse(rs.getString("municipalite"));
+
 
             } else {
                 System.out.println("Aucun utilisateur trouvé avec l'ID spécifié.");
