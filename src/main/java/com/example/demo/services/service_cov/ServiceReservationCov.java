@@ -1,8 +1,8 @@
-package services.service_cov;
+package com.example.demo.services.service_cov;
 
 import com.example.demo.interfaces.interfaces_cov.CrudReservationCov;
-import models.models_cov.ReservationCov;
-import utils.MyDB;
+import com.example.demo.models.models_cov.ReservationCov;
+import com.example.demo.utils.MyDB;
 
 import java.sql.*;
 import java.util.ArrayList;

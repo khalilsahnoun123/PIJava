@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="itemReservationCovPane" prefHeight="52.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllers_cov.itemReservationCovController">
+<AnchorPane fx:id="itemReservationCovPane" prefHeight="52.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.controllers_cov.itemReservationCovController">
     <children>
         <HBox prefHeight="52.0" prefWidth="959.0">
             <children>

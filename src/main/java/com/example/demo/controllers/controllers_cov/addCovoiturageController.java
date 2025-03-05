@@ -1,12 +1,12 @@
-package controllers.controllers_cov;
+package com.example.demo.controllers.controllers_cov;
 
-import models.models_cov.Covoiturage;
+import com.example.demo.models.models_cov.Covoiturage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import services.service_cov.ServiceCovoiturage;
+import com.example.demo.services.service_cov.ServiceCovoiturage;
 
 import java.net.URL;
 import java.util.Optional;

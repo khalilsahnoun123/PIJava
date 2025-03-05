@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllers_cov.ChatbotController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.controllers_cov.ChatbotController">
     <children>
         <VBox spacing="10" layoutX="20" layoutY="20">
             <TextArea fx:id="chatArea" editable="false" wrapText="true" prefHeight="300"/>

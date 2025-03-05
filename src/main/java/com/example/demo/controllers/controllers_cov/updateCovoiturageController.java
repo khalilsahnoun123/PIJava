@@ -1,6 +1,6 @@
-package controllers.controllers_cov;
+package com.example.demo.controllers.controllers_cov;
 
-import models.models_cov.Covoiturage;
+import com.example.demo.models.models_cov.Covoiturage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import services.service_cov.ServiceCovoiturage;
+import com.example.demo.services.service_cov.ServiceCovoiturage;
 
 import java.io.IOException;
 import java.net.URL;

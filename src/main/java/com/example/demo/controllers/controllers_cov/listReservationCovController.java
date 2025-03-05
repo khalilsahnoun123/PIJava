@@ -1,6 +1,6 @@
-package controllers.controllers_cov;
+package com.example.demo.controllers.controllers_cov;
 
-import models.models_cov.ReservationCov;
+import com.example.demo.models.models_cov.ReservationCov;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import services.service_cov.ServiceReservationCov;
+import com.example.demo.services.service_cov.ServiceReservationCov;
 
 import java.io.IOException;
 import java.net.URL;

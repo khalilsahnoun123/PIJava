@@ -1,4 +1,4 @@
-package models.models_cov;
+package com.example.demo.models.models_cov;
 
 public class Covoiturage {
     private int id;

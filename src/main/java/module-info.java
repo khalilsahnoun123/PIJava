@@ -10,10 +10,7 @@ module com.example.demo {
 
     requires javafx.web;
 
-    exports com.example.demo.models.models_velo to com.fasterxml.jackson.databind;
-    opens com.example.demo.models.models_velo to com.fasterxml.jackson.databind;
-    opens com.example.demo.controllers.controllers_velo to javafx.fxml;
-    exports com.example.demo.controllers.controllers_velo;
+
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
@@ -24,13 +21,18 @@ module com.example.demo {
     requires static lombok;
     requires java.persistence;
 
-    exports controllers.controllers_cov;
-    opens controllers.controllers_cov to javafx.fxml;
+    exports com.example.demo.controllers.controllers_cov;
+    opens com.example.demo.controllers.controllers_cov to javafx.fxml;
 
     exports com.example.demo.controllers.controllers_TP;
     opens com.example.demo.controllers.controllers_TP to javafx.fxml;
 
+    exports com.example.demo.models.models_velo to com.fasterxml.jackson.databind;
+    opens com.example.demo.models.models_velo to com.fasterxml.jackson.databind;
 
-    exports tests;
-    opens tests to javafx.fxml;
+    opens com.example.demo.controllers.controllers_velo to javafx.fxml;
+    exports com.example.demo.controllers.controllers_velo;
+
+    exports com.example.demo.tests;
+    opens com.example.demo.tests to javafx.fxml;
 }

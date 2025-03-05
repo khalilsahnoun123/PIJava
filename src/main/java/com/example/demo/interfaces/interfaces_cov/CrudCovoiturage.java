@@ -1,6 +1,6 @@
-package interfaces.interfaces_cov;
+package com.example.demo.interfaces.interfaces_cov;
 
-import models.models_cov.Covoiturage;
+import com.example.demo.models.models_cov.Covoiturage;
 
 import java.sql.SQLException;
 import java.util.List;

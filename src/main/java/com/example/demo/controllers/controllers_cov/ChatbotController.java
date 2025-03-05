@@ -1,4 +1,4 @@
-package controllers.controllers_cov;
+package com.example.demo.controllers.controllers_cov;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="listCovoituragePane" prefHeight="574.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllers_cov.listCovoiturageController">
+<AnchorPane fx:id="listCovoituragePane" prefHeight="574.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.controllers_cov.listCovoiturageController">
     <children>
         <Label layoutX="54.0" layoutY="29.0" prefHeight="50.0" prefWidth="290.0" text="| Liste Des Covoiturages" textFill="#898989">
             <font>

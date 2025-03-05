@@ -1,6 +1,6 @@
-package controllers.controllers_cov;
+package com.example.demo.controllers.controllers_cov;
 
-import models.models_cov.Covoiturage;
+import com.example.demo.models.models_cov.Covoiturage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
@@ -8,8 +8,8 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
-import services.service_cov.ServiceCovoiturage;
-import services.service_cov.ServiceReservationCov;
+import com.example.demo.services.service_cov.ServiceCovoiturage;
+import com.example.demo.services.service_cov.ServiceReservationCov;
 
 import java.net.URL;
 import java.sql.SQLException;

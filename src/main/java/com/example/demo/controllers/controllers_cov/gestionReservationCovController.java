@@ -1,4 +1,4 @@
-package controllers.controllers_cov;
+package com.example.demo.controllers.controllers_cov;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

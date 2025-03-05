@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addReservationCovPane" prefHeight="574.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllers_cov.addReservationCovFrontController">
+<AnchorPane fx:id="addReservationCovPane" prefHeight="574.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.controllers_cov.addReservationCovFrontController">
     <children>
         <Label layoutX="244.0" layoutY="42.0" prefHeight="66.0" prefWidth="297.0" text="Ajouter une Reservation" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="42.0">
             <font>

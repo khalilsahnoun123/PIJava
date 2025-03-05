@@ -1,6 +1,6 @@
-package controllers.controllers_cov;
+package com.example.demo.controllers.controllers_cov;
 
-import models.models_cov.ReservationCov;
+import com.example.demo.models.models_cov.ReservationCov;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import services.service_cov.ServiceReservationCov;
+import com.example.demo.services.service_cov.ServiceReservationCov;
 
 import java.net.URL;
 import java.util.Optional;
