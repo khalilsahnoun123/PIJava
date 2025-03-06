@@ -4,7 +4,7 @@ module com.example.demo {
     requires java.sql;
     requires itextpdf;
     requires java.net.http;
-
+    requires  json.simple;
     requires com.fasterxml.jackson.databind;
 
     requires javafx.web;

@@ -36,6 +36,10 @@ public class ReserverVeloController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("listCovoiturageFront.fxml"));
         buttonCov.getScene().setRoot(root);
     }
+    public void buttonHomeOnAction(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/home.fxml"));
+        buttonCov.getScene().setRoot(root);
+    }
     private void loadGovernorats() {
         governoratCombo.getItems().addAll(stationService.getAllGovernorats());
     }

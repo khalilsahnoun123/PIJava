@@ -1,7 +1,7 @@
 package com.example.demo.tests;
 
 import javafx.application.Application;
-
+import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +18,7 @@ public class main extends Application {
        Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/DashboardAdmin.fxml"));//Dashboard Admin
        // Parent root = FXMLLoader.load(getClass().getResource("/ressource_cov/hello-view.fxml"));
        // Parent root = FXMLLoader.load(getClass().getResource("/ressource_cov/listCovoiturageFront.fxml"));
+
         stage.setTitle("Wasalni | 2025");
         stage.setScene(new Scene(root));
         stage.show();
