@@ -28,16 +28,15 @@ module com.example.demo {
     requires spark.core;
     requires org.json;
 
-    opens com.example.demo.controllers to javafx.fxml;
-    exports com.example.demo.Services;
-exports com.example.demo.controllers;
-    opens com.example.demo.models to javafx.base;  // Permet l'accès via réflexion
+    opens com.example.demo.controllers.controllers_users to javafx.fxml;
+    exports com.example.demo.Services.Service_user;
+    exports com.example.demo.controllers.controllers_users;
+    opens com.example.demo.models.models_user to javafx.base;  // Permet l'accès via réflexion
     exports com.example.demo;
-    exports com.example.demo.interfaces;
-    opens com.example.demo.enums to javafx.base;
+    exports com.example.demo.interfaces.interfaces_user;
+    opens com.example.demo.enums.enums_user to javafx.base;
     exports com.example.demo.tests;
-    exports com.example.demo.controllers.controllers_TP;
-    opens com.example.demo.controllers.controllers_TP to javafx.fxml;
+
 }
 
 
