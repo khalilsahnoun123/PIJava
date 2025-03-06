@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
+
 <VBox fx:controller="com.example.demo.controllers.controllers_TP.AccueilController"
       xmlns:fx="http://javafx.com/fxml"
       alignment="CENTER" spacing="20"
@@ -28,4 +30,5 @@
                     style="-fx-font-size: 14px; -fx-text-fill: white; -fx-pref-width: 200px; -fx-pref-height: 40px; -fx-background-color: #2196F3;"/>
         </VBox>
     </children>
+    <AnchorPane fx:id="view_pages" prefHeight="614.0" prefWidth="880.0" />
 </VBox>

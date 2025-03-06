@@ -235,7 +235,7 @@ public class VehiculeManagementController {
     @FXML
     public void goBack(ActionEvent actionEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Ressource-TP/Accueil-TP.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/DashboardAdmin.fxml"));
             Stage stage = (Stage) previousButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Gestion ");

@@ -210,7 +210,7 @@ public class LigneManagementController {
     @FXML
     private void handlePrevious() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Ressource-TP/Accueil-TP.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/DashboardAdmin.fxml"));
             Stage stage = (Stage) previousButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

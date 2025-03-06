@@ -63,18 +63,24 @@ public class AccueilController {
     }
 
     @FXML
-    private void handleLigneManagement() {
-        navigateTo("/Ressource-TP/LigneManagement.fxml", "Gestion des Lignes");
+    private void handleLigneManagement() throws IOException {
+        Parent fxml= FXMLLoader.load(getClass().getResource("/Ressource-TP/LigneManagement.fxml"));
+        view_pages.getChildren().removeAll();
+        view_pages.getChildren().setAll(fxml);
     }
 
     @FXML
-    private void handleVehicleManagement() {
-        navigateTo("/Ressource-TP/VehiculeManagement.fxml", "Gestion des Véhicules");
+    private void handleVehicleManagement() throws IOException {
+        Parent fxml= FXMLLoader.load(getClass().getResource("/Ressource-TP/VehiculeManagement.fxml"));
+        view_pages.getChildren().removeAll();
+        view_pages.getChildren().setAll(fxml);
     }
 
     @FXML
-    private void handleStationManagement() {
-        navigateTo("/Ressource-TP/StationManagement.fxml", "Gestion des Stations");
+    private void handleStationManagement() throws IOException {
+        Parent fxml= FXMLLoader.load(getClass().getResource("/Ressource-TP/StationManagement.fxml"));
+        view_pages.getChildren().removeAll();
+        view_pages.getChildren().setAll(fxml);
     }
 
     private void navigateTo(String fxmlPath, String title) {
