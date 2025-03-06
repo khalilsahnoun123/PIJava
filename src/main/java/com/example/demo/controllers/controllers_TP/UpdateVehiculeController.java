@@ -26,7 +26,7 @@ public class UpdateVehiculeController {
     @FXML private TextField vipAvailableField;
     @FXML private TextField premiumAvailableField;
     @FXML private TextField economyAvailableField;
-    @FXML private Button saveButton;
+
     @FXML private Button previousButton;
     @FXML private Label messageLabel;
 
@@ -93,6 +93,7 @@ public class UpdateVehiculeController {
 
             // Validate numeric fields
             if (!validateNumericFields()) {
+                showErrorMessage("Veuillez Completer tout les champs.");
                 return;
             }
 

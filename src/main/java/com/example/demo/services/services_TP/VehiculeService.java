@@ -70,7 +70,7 @@ public class VehiculeService implements IService_TP<Vehicule> {
 
     @Override
     public void update(Vehicule vehicule) {
-        String query = "UPDATE vehicules SET type = ?, nbr_max_passagers_vip = ?, nbr_max_passagers_premium = ?, nbr_max_passagers_economy = ?, places_disponibles_vip = ?, places_disponibles_premium = ?, places_disponibles_economy = ? WHERE id = ?";
+        String query = "UPDATE vehicules SET type = ?, nbr_max_passagers_vip = ?, nbr_max_passagers_premium = ?, nbr_max_passagers_economy = ?, places_disponibles_vip = ?, places_disponibles_premium = ?, places_disponibles_economy = ? ,ligne_id=? WHERE id = ?";
         try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
             pstmt.setString(1, vehicule.getType().name());
             pstmt.setInt(2, vehicule.getNbrMaxPassagersVIP());
@@ -79,7 +79,8 @@ public class VehiculeService implements IService_TP<Vehicule> {
             pstmt.setInt(5, vehicule.getPlacesDisponiblesVIP());
             pstmt.setInt(6, vehicule.getPlacesDisponiblesPremium());
             pstmt.setInt(7, vehicule.getPlacesDisponiblesEconomy());
-            pstmt.setInt(8, vehicule.getId());
+            pstmt.setInt(8, vehicule.getLigne().getId());
+            pstmt.setInt(9, vehicule.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
