@@ -21,7 +21,7 @@ public class main extends Application {
    
     @Override
     public void start(Stage primaryStage) throws IOException {
-               Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
+               Parent root = FXMLLoader.load(getClass().getResource("/Ressource-user/login.fxml"));
         Scene scene = new Scene(root,950,650);
         primaryStage.setTitle("Gérer ");
         //primaryStage.setIconified(true);
