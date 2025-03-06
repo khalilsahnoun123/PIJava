@@ -108,24 +108,7 @@ void send_sms(){
     }
 
 
-    /*void send_sms(){
-        String ACCOUNT_SID = "ACb77418499a96c48513c7ed7c5c6a8837";
-        String AUTH_TOKEN = "8a5c4c0b279e859a3b98dd4a701b62e7";
 
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-
-        String recepientNumber = "+21695698847";
-        String message = "Bonjour Mr, \n"
-                +"Nous sommes ravis de vous informer qu'une reservation a été effectuée.\n"
-                +"Veuillez contactez l'administration pour plus de details. \n"
-                +"Merci de votre fidélité et à bientôt.\n"
-                +"Cordialement, \n";
-
-        com.twilio.rest.api.v2010.account.Message twilioMessage = com.twilio.rest.api.v2010.account.Message.creator(
-                new PhoneNumber(recepientNumber),
-                new PhoneNumber("+14064123283"), message).create();
-        System.out.println("SMS envoyé : "+twilioMessage.getSid());
-    }*/
 
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
@@ -135,7 +118,7 @@ void send_sms(){
         alert.showAndWait();
     }
 
-    void send_sms(){
+ /*  void send_sms(){
         String ACCOUNT_SID = "ACb77418499a96c48513c7ed7c5c6a8837";
         String AUTH_TOKEN = "8a5c4c0b279e859a3b98dd4a701b62e7";
 
@@ -152,5 +135,5 @@ void send_sms(){
                 new PhoneNumber(recepientNumber),
                 new PhoneNumber("+14064123283"),message).create();
         System.out.println("SMS envoyé : "+twilioMessage.getSid());
-    }
+    }*/
 }
