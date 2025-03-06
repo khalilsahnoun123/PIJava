@@ -4,6 +4,7 @@ import com.example.demo.enums.enums_TP.ReservationStatus;
 import com.example.demo.enums.enums_TP.TicketCategory;
 import com.example.demo.models.models_TP.Reservation;
 import com.example.demo.services.services_TP.ReservationService;
+import com.example.demo.utils.ExcelExporter;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -11,6 +12,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -32,7 +35,8 @@ public class ReservationManagementController {
     @FXML private Button addButton;
     @FXML private Button previousButton;
 
-
+    @FXML
+    private Button exportButton;
     private List<Reservation> reservations;
     private ReservationService reservationService = new ReservationService();
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -295,5 +299,30 @@ public class ReservationManagementController {
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    @FXML
+    private void handleExportToExcel() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Reservations as Excel");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
+
+
+        fileChooser.setInitialFileName("reservations.xlsx");
+
+        Stage stage = (Stage) exportButton.getScene().getWindow();
+        java.io.File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            try {
+                // Call the ExcelExporter utility method
+                ExcelExporter.exportReservationsToExcel(reservations, file.getAbsolutePath());
+                showSuccessMessage("Data exported Successfully to " + file.getAbsolutePath());
+            } catch (IOException e) {
+                e.printStackTrace();
+                showErrorMessage("Error exporting data: " + e.getMessage());
+            }
+        }
     }
 }

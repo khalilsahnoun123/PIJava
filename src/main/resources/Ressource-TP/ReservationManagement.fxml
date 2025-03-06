@@ -29,6 +29,7 @@
     <HBox spacing="15" alignment="CENTER">
         <Button fx:id="addButton" text="+ Add Reservation" onAction="#handleAddReservation" styleClass="action-button"/>
         <Button fx:id="refreshButton" text="Refresh" onAction="#loadData" styleClass="nav-button"/>
+        <Button fx:id="exportButton" text="Export to Excel" onAction="#handleExportToExcel" styleClass="nav-button"/>
     </HBox>
 
 

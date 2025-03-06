@@ -3,7 +3,6 @@ module com.example.demo {
     requires javafx.fxml;
     requires java.sql;
     requires itextpdf;
-    requires java.desktop;
     requires java.net.http;
 
     requires com.fasterxml.jackson.databind;
@@ -20,6 +19,7 @@ module com.example.demo {
     requires com.almasb.fxgl.all;
     requires static lombok;
     requires java.persistence;
+    requires org.apache.poi.ooxml;
 
     exports com.example.demo.controllers.controllers_cov;
     opens com.example.demo.controllers.controllers_cov to javafx.fxml;
