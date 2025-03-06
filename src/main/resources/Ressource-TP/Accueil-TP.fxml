@@ -7,9 +7,7 @@
       style="-fx-background-color: #F5F5F5; -fx-padding: 30;">
 
     <children>
-        <Button fx:id="GoBack" text="Retour A page D'Accueil"
-                onAction="#handlePrevious"
-                style="-fx-font-size: 14px; -fx-text-fill: white; -fx-pref-width: 200px; -fx-pref-height: 40px; -fx-background-color: #4CAF50;"/>
+
         <!-- Header -->
         <Label fx:id="welcomeLabel" text="Bienvenue au Système de Gestion des Transports"
                style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>

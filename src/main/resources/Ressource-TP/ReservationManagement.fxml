@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.demo.controllers.controllers_TP.ReservationManagementController"
+      spacing="20" style="-fx-background-color: #f5f6fa;"
+      prefWidth="1024" prefHeight="768">
+
+    <stylesheets>
+        <URL value="@/Ressource-TP/Style-Gestion-Stration-TP.css"/>
+    </stylesheets>
+
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <!-- Header Section -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Button fx:id="previousButton" text="◄ Back" onAction="#handlePrevious" styleClass="nav-button"/>
+        <Text text="Reservation Management" styleClass="header-text"/>
+    </HBox>
+
+    <!-- Action Buttons -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button fx:id="addButton" text="+ Add Reservation" onAction="#handleAddReservation" styleClass="action-button"/>
+        <Button fx:id="refreshButton" text="Refresh" onAction="#loadData" styleClass="nav-button"/>
+    </HBox>
+
+
+    <!-- Reservations List -->
+    <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+        <GridPane fx:id="gridPane" styleClass="grid-pane">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="5"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="7"/>
+                <ColumnConstraints percentWidth="12"/>
+                <ColumnConstraints percentWidth="12"/>
+                <ColumnConstraints percentWidth="10"/>
+                <ColumnConstraints percentWidth="10"/>
+                <ColumnConstraints percentWidth="10"/>
+                <ColumnConstraints percentWidth="10"/>
+                <ColumnConstraints percentWidth="10"/>
+            </columnConstraints>
+
+            <!-- Header Row -->
+            <Label text="ID" styleClass="grid-header" GridPane.columnIndex="0"/>
+            <Label text="Reservation Date" styleClass="grid-header" GridPane.columnIndex="1"/>
+            <Label text="Travel Date" styleClass="grid-header" GridPane.columnIndex="2"/>
+            <Label text="Seats" styleClass="grid-header" GridPane.columnIndex="3"/>
+            <Label text="Category" styleClass="grid-header" GridPane.columnIndex="4"/>
+            <Label text="Status" styleClass="grid-header" GridPane.columnIndex="5"/>
+            <Label text="Total Price" styleClass="grid-header" GridPane.columnIndex="6"/>
+            <Label text="Vehicle" styleClass="grid-header" GridPane.columnIndex="7"/>
+            <Label text="Departure" styleClass="grid-header" GridPane.columnIndex="8"/>
+            <Label text="Arrival" styleClass="grid-header" GridPane.columnIndex="9"/>
+            <Label text="Actions" styleClass="grid-header" GridPane.columnIndex="10"/>
+        </GridPane>
+    </ScrollPane>
+
+    <!-- Status Message -->
+    <Label fx:id="messageLabel" styleClass="status-message"/>
+</VBox>
