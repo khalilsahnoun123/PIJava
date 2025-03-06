@@ -9,7 +9,11 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import models.models_taxi.ReservationTaxi;
+import models.models_taxi.User;
 import models.models_taxi.Vehicule;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,16 +25,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import services.service_taxi.ServiceReservationTaxi;
 import services.service_taxi.ServiceVehicule;
+import services.service_taxi.UserService;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class listVehiculeFrontCardController implements Initializable {
 
@@ -49,6 +54,7 @@ public class listVehiculeFrontCardController implements Initializable {
     @FXML
     private ImageView qrCodeImg;
 
+    private final UserService userService = new UserService();
 
 
     Vehicule vec;
@@ -71,7 +77,35 @@ public class listVehiculeFrontCardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+    private void sendConfirmationEmail(String recipientEmail) {
+        final String senderEmail = "elazrak.mayssa@gmail.com";
+        final String senderPassword = "zfhf lhbd nzun wyuf";
 
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+
+        Session session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject("Confirmation de réservation de taxi");
+            message.setText("Félicitations ! Votre réservation de taxi a été confirmée. Merci de nous faire confiance.");
+            Transport.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     void open_ajouterReservation(ActionEvent event) {
         // From Formulaire
@@ -81,11 +115,17 @@ public class listVehiculeFrontCardController implements Initializable {
 
 
         ReservationTaxi res_taxi = new ReservationTaxi(
-                id_user, status, id_vec);
+                id_vec , status, id_user);
         ServiceReservationTaxi rts = new ServiceReservationTaxi();
         rts.ajouter(res_taxi);
-
-
+        User user = userService.getUserById(id_user);
+        System.out.println(user.getEmail());
+        if (user != null && user.getEmail() != null) {
+            sendConfirmationEmail(user.getEmail());
+        } else {
+            System.out.println("⚠ Impossible de récupérer l'email de l'utilisateur !");
+        }
+        send_sms();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Ajouté avec succès");
         alert.setHeaderText(null);
@@ -140,6 +180,24 @@ public class listVehiculeFrontCardController implements Initializable {
             e.printStackTrace();
             return null;
         }
+    }
+    void send_sms(){
+        String ACCOUNT_SID = "ACb77418499a96c48513c7ed7c5c6a8837";
+        String AUTH_TOKEN = "81169021dcc4ee721385ce4d321e4a83";
+
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+        String recepientNumber = "+21695698847";
+        String message = "Bonjour Mr, \n"
+                +"Nous sommes ravis de vous informer qu'une reservation a été effectuée.\n"
+                +"Veuillez contactez l'administration pour plus de details. \n"
+                +"Merci de votre fidélité et à bientôt.\n"
+                +"Cordialement, \n";
+
+        com.twilio.rest.api.v2010.account.Message twilioMessage = Message.creator(
+                new PhoneNumber(recepientNumber),
+                new PhoneNumber("+12564459923"),message).create();
+        System.out.println("SMS envoyé : "+twilioMessage.getSid());
     }
 
 }

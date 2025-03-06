@@ -8,6 +8,8 @@ module com.example.demo {
     requires org.controlsfx.controls;
     requires com.google.auth.oauth2;
     requires com.google.auth;
+    requires mysql.connector.java;
+    requires java.mail;
 
 
     exports controllers.controllers_taxi;

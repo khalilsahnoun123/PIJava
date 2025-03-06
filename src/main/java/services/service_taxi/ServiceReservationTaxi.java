@@ -3,6 +3,7 @@ package services.service_taxi;
 import interfaces.interfaces_taxi.CrudReservationTaxi;
 import models.models_taxi.ReservationTaxi;
 import utils.MyDB;
+import models.models_taxi.User;
 
 import java.sql.*;
 import java.util.ArrayList;
