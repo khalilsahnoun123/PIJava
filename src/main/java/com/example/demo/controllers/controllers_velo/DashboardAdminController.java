@@ -13,7 +13,10 @@ public class DashboardAdminController {
 
     public Button btnGestionTransportpublic;
     @FXML
-    private Button btnHome;
+    private Button btnCovoiturage;
+
+    @FXML
+    private Button btnReservationCov;
 
     @FXML
     private Button btnReservationVelo;
@@ -30,6 +33,15 @@ public class DashboardAdminController {
             view_pages.getChildren().setAll(fxml);
         }else if(event.getSource()==btnGestionTransportpublic){
             Parent fxml= FXMLLoader.load(getClass().getResource("/Ressource-TP/Accueil-TP.fxml"));
+            view_pages.getChildren().removeAll();
+            view_pages.getChildren().setAll(fxml);
+        }
+        else if(event.getSource()== btnCovoiturage){
+            Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/gestionCovoiturage.fxml"));
+            view_pages.getChildren().removeAll();
+            view_pages.getChildren().setAll(fxml);
+        }else if(event.getSource()==btnReservationCov){
+            Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/gestionReservationCov.fxml"));
             view_pages.getChildren().removeAll();
             view_pages.getChildren().setAll(fxml);
         }

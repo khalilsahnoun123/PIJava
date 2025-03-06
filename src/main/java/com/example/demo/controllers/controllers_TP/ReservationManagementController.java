@@ -1,18 +1,10 @@
 package com.example.demo.controllers.controllers_TP;
 
 import com.example.demo.enums.enums_TP.ReservationStatus;
-import com.example.demo.enums.enums_TP.TicketCategory;
 import com.example.demo.models.models_TP.Reservation;
 import com.example.demo.services.services_TP.ReservationService;
 import com.example.demo.utils.ExcelExporter;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +16,9 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -52,6 +46,7 @@ public class ReservationManagementController {
         setupGrid();
         styleComponents();
         loadData();
+
     }
     private void setupGrid() {
         gridPane.getColumnConstraints().clear();
@@ -325,4 +320,6 @@ public class ReservationManagementController {
             }
         }
     }
+
+
 }
