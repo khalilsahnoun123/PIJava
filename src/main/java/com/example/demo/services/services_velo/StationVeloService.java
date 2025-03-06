@@ -3,7 +3,7 @@ package com.example.demo.services.services_velo;
 import com.example.demo.interfaces.IService;
 import com.example.demo.models.models_velo.User;
 import com.example.demo.models.models_velo.StationVelo;
-import com.example.demo.utils.MyDatabase;
+import com.example.demo.utils.MyDataBase_Velo;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class StationVeloService implements IService<StationVelo> {
 
 
     public StationVeloService(){
-        cnx = MyDatabase.getInstance().getConx();
+        cnx = MyDataBase_Velo.getInstance().getConx();
     }
 
     @Override

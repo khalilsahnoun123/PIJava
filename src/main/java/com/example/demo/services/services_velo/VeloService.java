@@ -4,7 +4,8 @@ import com.example.demo.interfaces.IService;
 import com.example.demo.models.models_velo.Velo;
 import com.example.demo.models.models_velo.VeloType;
 import com.example.demo.models.models_velo.StationVelo;
-import com.example.demo.utils.MyDatabase;
+import com.example.demo.utils.MyDataBase_Velo;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class VeloService implements IService<Velo> {
     private final VeloTypeService typeService = new VeloTypeService();
 
     public VeloService() {
-        cnx = MyDatabase.getInstance().getConx();
+        cnx = MyDataBase_Velo.getInstance().getConx();
     }
 
     @Override

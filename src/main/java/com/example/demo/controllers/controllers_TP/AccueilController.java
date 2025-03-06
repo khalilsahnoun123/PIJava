@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -19,7 +20,8 @@ public class AccueilController {
     @FXML private Button stationManagementButton;
     @FXML private Label welcomeLabel;
 
-
+    @FXML
+    private AnchorPane view_pages;
     @FXML
     public void initialize() {
         // Apply styles and hover effects to buttons
@@ -54,8 +56,10 @@ public class AccueilController {
     }
 
     @FXML
-    private void handleReservationManagement() {
-        navigateTo("/Ressource-TP/ReservationManagement.fxml", "Gestion des Réservations");
+    private void handleReservationManagement() throws IOException {
+        Parent fxml= FXMLLoader.load(getClass().getResource("/Ressource-TP/ReservationManagement.fxml"));
+        view_pages.getChildren().removeAll();
+        view_pages.getChildren().setAll(fxml);
     }
 
     @FXML

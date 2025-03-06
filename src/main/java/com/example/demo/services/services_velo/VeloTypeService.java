@@ -2,7 +2,7 @@ package com.example.demo.services.services_velo;
 
 import com.example.demo.interfaces.IService;
 import com.example.demo.models.models_velo.VeloType;
-import com.example.demo.utils.MyDatabase;
+import com.example.demo.utils.MyDataBase_Velo;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class VeloTypeService implements IService<VeloType> {
     private ResultSet rs;
 
     public VeloTypeService() {
-        cnx = MyDatabase.getInstance().getConx();
+        cnx = MyDataBase_Velo.getInstance().getConx();
     }
 
     public VeloType readById(int id) {

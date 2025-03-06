@@ -2,7 +2,7 @@ package com.example.demo.services.services_velo;
 
 import com.example.demo.interfaces.IService;
 import com.example.demo.models.models_velo.User;
-import com.example.demo.utils.MyDatabase;
+import com.example.demo.utils.MyDataBase_Velo;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class UserService implements IService<User> {
 
 
     public UserService() {
-        this.cnx= MyDatabase.getInstance().getConx();
+        this.cnx= MyDataBase_Velo.getInstance().getConx();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class UserService implements IService<User> {
     @Override
     public void update(User user) {
         // Obtenir la connexion à la base de données
-        Connection cnx  = MyDatabase.getInstance().getConx();
+        Connection cnx  = MyDataBase_Velo.getInstance().getConx();
 
         // Vérifier si la connexion est valide
         if (cnx == null) {
@@ -84,7 +84,7 @@ public class UserService implements IService<User> {
 
     @Override
     public void delete(User user) {
-        Connection cnx = MyDatabase.getInstance().getConx();
+        Connection cnx = MyDataBase_Velo.getInstance().getConx();
 
         if (cnx == null) {
             System.out.println("La connexion à la base de données a échoué !");
@@ -110,7 +110,7 @@ public class UserService implements IService<User> {
 
     @Override
     public List<User> readAll() {
-        Connection cnx = MyDatabase.getInstance().getConx();
+        Connection cnx = MyDataBase_Velo.getInstance().getConx();
 
         if (cnx == null) {
             System.out.println("La connexion à la base de données a échoué !");
@@ -145,7 +145,7 @@ public class UserService implements IService<User> {
     @Override
     public User readById(int id) {
         // Obtenir la connexion à la base de données
-        Connection cnx = MyDatabase.getInstance().getConx();
+        Connection cnx = MyDataBase_Velo.getInstance().getConx();
 
         // Vérifier si la connexion est valide
         if (cnx == null) {

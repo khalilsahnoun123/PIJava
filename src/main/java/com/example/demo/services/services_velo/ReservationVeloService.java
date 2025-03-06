@@ -4,7 +4,8 @@ import com.example.demo.interfaces.IService;
 import com.example.demo.models.models_velo.ReservationVelo;
 import com.example.demo.models.models_velo.User;
 import com.example.demo.models.models_velo.Velo;
-import com.example.demo.utils.MyDatabase;
+import com.example.demo.utils.MyDataBase_Velo;
+
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class ReservationVeloService implements IService<ReservationVelo> {
     private final VeloService veloService = new VeloService();
 
     public ReservationVeloService() {
-        cnx = MyDatabase.getInstance().getConx();
+        cnx = MyDataBase_Velo.getInstance().getConx();
     }
 
     @Override
