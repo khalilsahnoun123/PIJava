@@ -12,8 +12,8 @@ module com.example.demo {
     requires java.mail;
 
 
-    exports controllers.controllers_taxi;
-    opens controllers.controllers_taxi to javafx.fxml;
-    exports tests;
-    opens tests to javafx.fxml;
+    exports com.example.demo.controllers.controllers_taxi;
+    opens com.example.demo.controllers.controllers_taxi to javafx.fxml;
+    exports com.example.demo.tests;
+    opens com.example.demo.tests to javafx.fxml;
 }
