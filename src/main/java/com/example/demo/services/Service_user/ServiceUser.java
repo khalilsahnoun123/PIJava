@@ -10,7 +10,7 @@ import java.util.Properties;
 import com.example.demo.enums.enums_user.UserRole;
 import jakarta.mail.*;
 import com.example.demo.models.models_user.User;
-import com.example.demo.utils.MyDataBase;
+import com.example.demo.utils.MyDataBase_user;
 import jakarta.mail.Authenticator;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
@@ -23,7 +23,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class ServiceUser {
 
-    private Connection connection = MyDataBase.getInstance().getConnection();
+    private Connection connection = MyDataBase_user.getInstance().getConnection();
     ;
 
     public ServiceUser() {

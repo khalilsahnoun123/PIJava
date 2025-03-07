@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.example.demo.models.models_user.User;
-import com.example.demo.utils.MyDataBase;
+import com.example.demo.utils.MyDataBase_user;
 import com.example.demo.services.Service_user.ServiceUser;
 
 import javafx.collections.FXCollections;
@@ -36,7 +36,7 @@ import javafx.stage.Stage;
 
 public class ListeUsersController implements Initializable {
 
-    private Connection connection = MyDataBase.getInstance().getConnection();
+    private Connection connection = MyDataBase_user.getInstance().getConnection();
 
     @FXML
     private GridPane usersGrid; // GridPane to display users
