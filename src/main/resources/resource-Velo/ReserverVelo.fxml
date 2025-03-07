@@ -42,7 +42,7 @@
                <children>
                   <ImageView fitHeight="61.0" fitWidth="69.0" layoutX="28.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/logo%20(2).png" />
+                        <Image url="@img/logo (2).png" />
                      </image>
                   </ImageView>
                </children>
@@ -56,20 +56,35 @@
                </HBox.margin>
             </Label>
             <Pane prefHeight="54.0" prefWidth="345.0" />
-            <Button fx:id="buttonHome" mnemonicParsing="false" onAction="#buttonHomeOnAction" prefHeight="36.0" prefWidth="92.0" styleClass="btn" stylesheets="@style.css" text="Home">
-               <HBox.margin>
-                  <Insets top="9.0" />
-               </HBox.margin>
-            </Button>
+             <Button fx:id="buttonHome" mnemonicParsing="false" onAction="#buttonHomeOnAction" prefHeight="36.0" prefWidth="92.0" styleClass="btn" stylesheets="@style.css" text="Home">
+                 <HBox.margin>
+                     <Insets top="9.0" />
+                 </HBox.margin>
+             </Button>
+             <Button fx:id="buttonlogout" mnemonicParsing="false" onAction="#buttonlogoutOnAction" prefHeight="36.0" prefWidth="92.0" styleClass="btn" stylesheets="@style.css" text="logout">
+                 <HBox.margin>
+                     <Insets top="9.0" />
+                 </HBox.margin>
+             </Button>
             <Pane prefHeight="54.0" prefWidth="50.0" />
             <Button fx:id="buttonCov" mnemonicParsing="false" onAction="#buttonCovOnAction" prefHeight="36.0" prefWidth="112.0" styleClass="btn" stylesheets="@style.css" text="Covoiturages">
                <HBox.margin>
                   <Insets top="9.0" />
                </HBox.margin>
             </Button>
+             <Button fx:id="transportPublicButton" mnemonicParsing="false" onAction="#buttontransportOnAction" prefHeight="36.0" prefWidth="112.0" styleClass="btn" stylesheets="@style.css" text="Transport Public">
+                 <HBox.margin>
+                     <Insets top="9.0" />
+                 </HBox.margin>
+             </Button>
+             <Button fx:id="taxibutton" mnemonicParsing="false" onAction="#buttontaxiOnAction" prefHeight="36.0" prefWidth="112.0" styleClass="btn" stylesheets="@style.css" text="Taxi">
+                 <HBox.margin>
+                     <Insets top="9.0" />
+                 </HBox.margin>
+             </Button>
+
             <Pane prefHeight="54.0" prefWidth="28.0" />
-            <Button fx:id="buttonVelo" layoutX="823.0" layoutY="19.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="111.0" styleClass="btn" stylesheets="@style.css" text="Velo" />
-            <Pane layoutX="934.0" layoutY="10.0" prefHeight="54.0" prefWidth="50.0" />
+              <Pane layoutX="934.0" layoutY="10.0" prefHeight="54.0" prefWidth="50.0" />
          </children>
       </HBox>
       <Label layoutX="69.0" layoutY="178.0" style="-fx-text-fill: #34459e;" text="Nos Velo" textFill="GOLDENROD">

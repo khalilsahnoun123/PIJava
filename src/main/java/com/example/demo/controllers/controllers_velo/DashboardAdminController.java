@@ -19,7 +19,12 @@ public class DashboardAdminController {
     private Button btnReservationCov;
 
     @FXML
+    private Button btnlogout;
+
+    @FXML
     private Button btnReservationVelo;
+    @FXML
+    private Button btnUserlistbutton;
 
     @FXML
     private AnchorPane view_pages;
@@ -44,7 +49,15 @@ public class DashboardAdminController {
             Parent fxml= FXMLLoader.load(getClass().getResource("/ressource_cov/gestionReservationCov.fxml"));
             view_pages.getChildren().removeAll();
             view_pages.getChildren().setAll(fxml);
+        }else if(event.getSource()==btnUserlistbutton){
+            Parent fxml= FXMLLoader.load(getClass().getResource("/Ressource-user/ListeUsers.fxml"));
+            view_pages.getChildren().removeAll();
+            view_pages.getChildren().setAll(fxml);
+        }else if(event.getSource()==btnlogout){
+            Parent root = FXMLLoader.load(getClass().getResource("/Ressource-user/login.fxml"));
+            btnlogout.getScene().setRoot(root);
         }
+
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.demo.controllers.controllers_cov;
 
 import com.example.demo.models.models_cov.Covoiturage;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -25,23 +27,19 @@ import java.util.logging.Logger;
 
 public class listCovoiturageFrontController implements Initializable {
 
-    @FXML
-    private ImageView background;
 
-    @FXML
-    private GridPane grid;
-
-    @FXML
-    private HBox hbox;
-
-    @FXML
-    private AnchorPane listVoitureFront;
 
     @FXML
     private Pagination pag;
 
     @FXML
-    private HBox vbox;
+    private Button btncov;
+    @FXML
+    private Button btnvelo;
+    @FXML
+    private Button btnlogout;
+    @FXML
+    private Button btntransport;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,7 +56,7 @@ public class listCovoiturageFrontController implements Initializable {
                 for (int i = page; i < Math.min(page + itemsPerPage, covs.size()); i++) {
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("ressource_cov/listCovoiturageFrontCard.fxml"));
+                        fxmlLoader.setLocation(getClass().getResource("/ressource_cov/listCovoiturageFrontCard.fxml"));
                         AnchorPane anchorPane = fxmlLoader.load();
                         anchorPane.getStyleClass().add("ct");
                         listCovoiturageFrontCardController itemController = fxmlLoader.getController();
@@ -90,5 +88,25 @@ public class listCovoiturageFrontController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace(); // Gestion d'erreur si le fichier chatbot-view.fxml n'est pas trouvé
         }
+    }
+
+    public void veloAction(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/ReserverVelo.fxml"));
+        btnvelo.getScene().setRoot(root);
+    }
+
+    public void transportAction(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Ressource-TP/AddReservation-TP.fxml"));
+        btntransport.getScene().setRoot(root);
+    }
+
+    public void covtAction(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/ressource-cov/addReservationCovFront.fxml"));
+        btntransport.getScene().setRoot(root);
+    }
+
+    public void logout(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Ressource-user/login.fxml"));
+        btnlogout.getScene().setRoot(root);
     }
 }

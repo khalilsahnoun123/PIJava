@@ -25,6 +25,9 @@ public class ReserverVeloController implements Initializable {
     @FXML private TextField adresseField;
     @FXML private FlowPane stationsContainer;
     @FXML private Button buttonCov;
+    @FXML private Button transportPublicButton;
+    @FXML private Button taxibutton;
+    @FXML private Button buttonlogout;
     private final StationVeloService stationService = new StationVeloService();
 
     @Override
@@ -33,8 +36,16 @@ public class ReserverVeloController implements Initializable {
         setupMunicipaliteListener();
     }
     public void buttonCovOnAction(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("listCovoiturageFront.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ressource_cov/listCovoiturageFront.fxml"));
         buttonCov.getScene().setRoot(root);
+    }
+    public void buttontaxiOnAction(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/ressource_cov/listCovoiturageFront.fxml"));
+        taxibutton.getScene().setRoot(root);
+    }
+    public void buttontransportOnAction(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Ressource-TP/AddReservation-TP.fxml"));
+        transportPublicButton.getScene().setRoot(root);
     }
     public void buttonHomeOnAction(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/home.fxml"));
@@ -85,4 +96,8 @@ public class ReserverVeloController implements Initializable {
     }
 
 
+    public void buttonlogoutOnAction(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Ressource-user/login.fxml"));
+        buttonlogout.getScene().setRoot(root);
+    }
 }

@@ -333,15 +333,13 @@ public class loginController implements Initializable {
     private String getFxmlFileForRole(UserRole role) {
         switch (role) {
             case ADMIN:
-                return "/Ressource-user/AcceuilAdmin.fxml";
+                return "/resource-Velo/DashboardAdmin.fxml";
             case COVOITUREUR:
-                return "/com/example/demo/AcceuilCovoitureur.fxml";
+                return "/resource-Velo/DashboardAdmin.fxml";
             case CHAUFFEUR_TAXI:
-                return "/com/example/demo/AcceuilChauffeur.fxml";
-            case VOYAGEUR:
-                return "/com/example/demo/AcceuilVoyageur.fxml";
+                return "/resource-Velo/DashboardAdmin.fxml";
             default:
-                return "/Ressource-user/AcceuilUser.fxml";
+                return "/resource-Velo/ReserverVelo.fxml";
         }
     }
 

@@ -27,19 +27,24 @@
                     </HBox.margin>
                 </Label>
                 <Pane prefHeight="54.0" prefWidth="440.0" />
-                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="92.0" styleClass="btn" stylesheets="@style.css" text="Home">
+                <Button fx:id="btnlogout" onAction="#logout" mnemonicParsing="false" prefHeight="36.0" prefWidth="92.0" styleClass="btn" stylesheets="@style.css" text="logout">
                     <HBox.margin>
                         <Insets top="9.0" />
                     </HBox.margin>
                 </Button>
                 <Pane prefHeight="54.0" prefWidth="50.0" />
-                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" styleClass="btn" stylesheets="@style.css" text="Covoiturages">
+                <Button fx:id="btncov" onAction="#covtAction"  mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" styleClass="btn" stylesheets="@style.css" text="Covoiturages">
                     <HBox.margin>
                         <Insets top="9.0" />
                     </HBox.margin>
                 </Button>
                 <Pane prefHeight="54.0" prefWidth="50.0" />
-                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="111.0" styleClass="btn" stylesheets="@style.css" text="Réservations">
+                <Button fx:id="btntransport" onAction="#transportAction" mnemonicParsing="false" prefHeight="36.0" prefWidth="111.0" styleClass="btn" stylesheets="@style.css" text=" Transport">
+                    <HBox.margin>
+                        <Insets top="9.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="btnvelo" onAction="#veloAction"  mnemonicParsing="false" prefHeight="36.0" prefWidth="111.0" styleClass="btn" stylesheets="@style.css" text=" Velo">
                     <HBox.margin>
                         <Insets top="9.0" />
                     </HBox.margin>
