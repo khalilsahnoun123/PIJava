@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,7 +34,8 @@ public class AddReservationController {
     @FXML private Button addButton;
     @FXML private Button previousButton;
     @FXML private Label messageLabel;
-
+    @FXML
+    private Button btnvelo;
 
     private LigneService ligneService = new LigneService();
     private StationService stationService = new StationService();
@@ -246,5 +248,18 @@ public class AddReservationController {
 
     private List<Station> getStationsForLine(Ligne ligne) {
         return stationService.getStationByIdLigne(ligne.getId()); // Replace with actual filtering logic
+    }
+
+    @FXML
+    private void goBackvelo() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/resource-Velo/ReserverVelo.fxml"));
+            Stage stage = (Stage) btnvelo.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Reservation Management");
+        } catch (IOException e) {
+            showErrorMessage("Error returning to previous screen: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

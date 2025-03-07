@@ -12,7 +12,8 @@
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
-
+    <Button fx:id="btnvelo" text="Add Reservation" onAction="#goBackvelo" prefWidth="150"
+            style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 4;"/>
     <!-- Main Title -->
     <Text text="Add a Reservation" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #2c3e50;"/>
 

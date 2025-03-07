@@ -20,7 +20,7 @@
         <!-- Ajouter ces éléments à la fin du VBox principal -->
         <HBox spacing="20" alignment="CENTER_RIGHT">
             <Label fx:id="totalPriceLabel" style="-fx-font-size: 16px; -fx-text-fill: #27ae60;" visible="false"/>
-            <Button fx:id="confirmButton" text="Confirmer la réservation"
+            <Button fx:id="confirmButton"  text="Confirmer la réservation"
                     style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"
                     onAction="#handleConfirmReservation" disable="true"/>
         </HBox>

@@ -33,7 +33,7 @@ public class updateReservationCovController implements Initializable {
     private TextField txtNbrPlace;
 
     @FXML
-    private ComboBox<String> txtStatusResCov;
+    private ComboBox<String> txtStatusResCov ;
 
     @FXML
     private AnchorPane updateReservationCovPane;
@@ -45,6 +45,7 @@ public class updateReservationCovController implements Initializable {
     private int covId=-1;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ressource_cov/itemReservationCov.fxml"));
         try {
@@ -54,7 +55,7 @@ public class updateReservationCovController implements Initializable {
             ServiceReservationCov crs = new ServiceReservationCov();
 
             rescov = crs.getById(item.getId());
-            txtStatusResCov.setValue(rescov.getStatus());
+            txtStatusResCov.getItems().addAll("en attente", "accepte", "refuse");
             txtCovoiturage.setValue(String.valueOf(rescov.getId_cov()));
             txtNbrPlace.setText(String.valueOf(rescov.getNbr_place()));
 

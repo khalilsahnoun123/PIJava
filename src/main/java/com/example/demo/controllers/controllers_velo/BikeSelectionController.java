@@ -238,7 +238,7 @@ public class BikeSelectionController implements Initializable {
     private void handleConfirmReservation() {
         System.out.println("Tentative de confirmation...");
 
-        if (!validateReservation()) return;
+        if (!validateReservation()) {return;}
 
         ReservationVelo reservation = createReservation();
         System.out.println("Création réservation temporaire: " + reservation);

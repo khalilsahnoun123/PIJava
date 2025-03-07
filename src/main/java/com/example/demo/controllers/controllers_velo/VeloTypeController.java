@@ -150,7 +150,7 @@ public class VeloTypeController implements Initializable {
         File file = fileChooser.showOpenDialog(typeImagePreview.getScene().getWindow());
         if (file != null) {
             try {
-                Path targetDir = Paths.get("C:\\Users\\jihen\\Desktop\\PIJava\\src\\main\\resources\\resource-Velo\\img\\image_velo");
+                Path targetDir = Paths.get("src/main/resources/resource-Velo/img/image_velo");
                 Files.createDirectories(targetDir);
 
                 String fileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) + "_" + file.getName();
